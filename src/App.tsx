@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import CheckDeliveryAddress from './components/forms/CheckDeliveryAddress/CheckDeliveryAddress';
+import Categories from './components/NavBars/Categories/Categories';
+import Combos from './components/NavBars/Comobos/Combos';
+import GroupedProducts from './components/Products/GroupedProducts/GroupedProducts';
+import SeoTextContainer from './components/SeoTextContainer/SeoTextContainer';
+import Footer from './components/ui/Footer/Footer';
+import Header from './components/ui/Header/Header';
+import { useAppSelector } from './store/store';
 
 function App() {
+
+  const {products} = useAppSelector(state=>state.productsSlice)
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <main>
+        <Categories />
+        <Combos />
+        <CheckDeliveryAddress />
+        <GroupedProducts title={"Пицца"} products={products} loading={false} err="" />
+        <SeoTextContainer />
+        <Footer />
+      </main>
     </div>
   );
 }

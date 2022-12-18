@@ -1,13 +1,29 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  @font-face {
+    font-family: 'SF Pro Text';
+    src: url(/public/fonts/San_Francisco_Pro_Text/SF-Pro-Display-Regular.otf);
+  }
+  @font-face {
+    font-family: 'SF Pro Diplay';
+    src: url(/public/fonts/sf-pro-display-cufonfonts/SFPRODISPLAYREGULAR.OTF);
+  }
+  @font-face {
+    font-family: 'Proxima Nova';
+    src: url(/public/fonts/Proxima_Nova/proximanova_black.otf);
+  }
+
+
+
+body {
+  background: #f9f9f9;
+  font-family: "Inter", sans-serif;
+  color: #191919;
+}
+.container {
+  max-width: 1300px;
+  padding: 0 5px;
+  margin: 0 auto;
 }

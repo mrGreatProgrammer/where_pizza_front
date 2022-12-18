@@ -1,0 +1,17 @@
+.combos__cards {
+  .comobos-img__container {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top;
+    border-radius: 12px;
+  }
+  // &:nth-child(1) {
+  //   .comobos-img__container {
+  //   }
+  // }
+  &:nth-child(2n) {
+    .comobos-img__container {
+      background-position: center;
+    }
+  }
+}
