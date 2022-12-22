@@ -12,9 +12,9 @@ interface modalProps {
 
 const ModalProduct = ({ setModalVisibility, modalVisibility }: modalProps) => {
   return (
-    <dialog className="" open={modalVisibility}>
-      <div className="">
-        <div className="modal__extit_btn-container">
+    <dialog className="z-10" open={modalVisibility} onClose={(e)=>{setModalVisibility(false);console.log(e)}} >
+      <div className="backdrop-blur-lg w-full h-screen ">
+        <div className="modal__extit_btn-container ">
           <button
             className="exit__btn"
             onClick={() => setModalVisibility(false)}
@@ -47,7 +47,7 @@ const ModalProduct = ({ setModalVisibility, modalVisibility }: modalProps) => {
               </div>
             </div>
             <div>
-              
+
             </div>
             <div></div>
             <div></div>
