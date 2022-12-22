@@ -15,6 +15,8 @@ import FilterIcon from './FilterIcon';
 import FacebookIcon from './FacebookIcon';
 import InstagrammIcon from './InstagrammIcon';
 import PhoneIcon from './PhoneIcon';
+import CrossIcon from './CrossIcon';
+import InfoIcon from './InfoIcon';
 
 export {
   SearcherIcon,
@@ -33,5 +35,7 @@ export {
   FilterIcon,
   PhoneIcon,
   FacebookIcon,
-  InstagrammIcon
+  InstagrammIcon,
+  CrossIcon,
+  InfoIcon
 };

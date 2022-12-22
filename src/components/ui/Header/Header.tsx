@@ -27,7 +27,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="sticky header__bottom-container border-b border-[#f0f0f0]">
+      <div className="header__bottom-container border-b border-[#f0f0f0]">
         <div className="container">
           <div className="header_bottom py-3 flex flex-row justify-between">
             <div className="logo__container">
