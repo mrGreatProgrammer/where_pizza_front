@@ -8,7 +8,7 @@ import LocationHeader from "./LocationHeader/LocationHeader";
 
 const Header = () => {
   return (
-    <header className="header bg-white fixed top-0 left-0 right-0">
+    <header className="header bg-white fixed top-0 left-0 right-0 z-10">
       <div className="header__top-container border-b border-[#f0f0f0]">
         <div className="container">
           <div className="header__top flex flex-row justify-between py-2.5 text-sm">

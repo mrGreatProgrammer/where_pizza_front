@@ -15,6 +15,13 @@ const Product = ({
 }: IProduct): JSX.Element => {
   const [modalVisibility, setModalVisibility] = React.useState(false);
 
+  function showModal() {
+    
+  }
+  function closeModal(){
+    
+  }
+
   return (
     <>
       <div className="product__card bg-white border border-lineGray rounded-[20px]">

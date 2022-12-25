@@ -6,7 +6,7 @@ import {
   fakeProducts,
   productTagReciepCardData,
 } from "./../../fakeData/productsFake";
-import { Segmented } from "antd";
+import { Segmented, Modal } from "antd";
 
 const img = fakeProducts[0].productImage;
 
@@ -22,15 +22,22 @@ const ModalProduct = ({ setModalVisibility, modalVisibility }: modalProps) => {
   return (
     // <dialog className="z-10" open={modalVisibility} onClose={(e)=>{setModalVisibility(false);console.log(e)}} >
 
-    <div
-      className={`${
-        modalVisibility ? "flex" : "hidden"
-      } backdrop-blur-lg w-full h-screen fixed top-0 left-0 right-0 bottom-0 justify-center items-center z-10`}
+    // <div
+    //   className={`${
+    //     modalVisibility ? "flex" : "hidden"
+    //   } backdrop-blur-lg w-full h-screen fixed top-0 left-0 right-0 bottom-0 justify-center items-center z-10`}
+    // >
+    <Modal
+      open={modalVisibility}
+      onCancel={() => setModalVisibility(false)}
+      footer={[
+        <button onClick={() => setModalVisibility(false)}>cancle</button>,
+      ]}
     >
       <div className="modal__extit_btn-container">
-        <button className="exit__btn" onClick={() => setModalVisibility(false)}>
+        {/* <button className="exit__btn" onClick={() => setModalVisibility(false)}>
           <CrossIcon />
-        </button>
+        </button> */}
       </div>
       <div className="bg-white modal__content-container max-w-[1070px] rounded-3xl">
         <div className="relative">
@@ -61,10 +68,10 @@ const ModalProduct = ({ setModalVisibility, modalVisibility }: modalProps) => {
                 <div>
                   {/* {productTagReciepCardData.map((e) => (
                     <ProductTagCard
-                      key={e.id}
-                      id={e.id}
-                      // icon={e.icon}
-                      title={e.title}
+                    key={e.id}
+                    id={e.id}
+                    // icon={e.icon}
+                    title={e.title}
                     />
                   ))} */}
                 </div>
@@ -92,7 +99,8 @@ const ModalProduct = ({ setModalVisibility, modalVisibility }: modalProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </Modal>
+    // </div>
     // </dialog>
   );
 };
