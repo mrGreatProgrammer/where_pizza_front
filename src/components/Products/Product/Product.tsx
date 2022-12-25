@@ -56,7 +56,7 @@ const Product = ({
                   </s>
                 )}
                 <p className="product__price text-primery text-lg font-semibold">
-                  {productPrice} ₽
+                 от {productPrice} ₽
                 </p>
               </div>
             </div>

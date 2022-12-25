@@ -10,32 +10,34 @@ import PizzaIcon from "./categories/PizzaIcon";
 import SnacksIcon from "./categories/SnacksIcon";
 import SauceIcon from "./categories/SauceIcon";
 import SushiIcon from "./categories/SushiIcon";
-import ComboIcon from './categories/ComboIcon';
-import FilterIcon from './FilterIcon';
-import FacebookIcon from './FacebookIcon';
-import InstagrammIcon from './InstagrammIcon';
-import PhoneIcon from './PhoneIcon';
-import CrossIcon from './CrossIcon';
-import InfoIcon from './InfoIcon';
+import ComboIcon from "./categories/ComboIcon";
+import FilterIcon from "./FilterIcon";
+import FacebookIcon from "./FacebookIcon";
+import InstagrammIcon from "./InstagrammIcon";
+import PhoneIcon from "./PhoneIcon";
+import CrossIcon from "./CrossIcon";
+import InfoIcon from "./InfoIcon";
+import CheeseIcon from "./CheeseIcon";
 
 export {
-  SearcherIcon,
-  CartIcon,
   AccounIcon,
-  LocationIcon,
   ArrowDown,
+  CartIcon,
+  ComboIcon,
+  CrossIcon,
+  CheeseIcon,
   DessertIcon,
   DrinksIcon,
-  FireIcon,
-  PizzaIcon,
-  SnacksIcon,
   SauceIcon,
+  SearcherIcon,
   SushiIcon,
-  ComboIcon,
-  FilterIcon,
+  SnacksIcon,
+  LocationIcon,
+  PizzaIcon,
   PhoneIcon,
   FacebookIcon,
+  FilterIcon,
+  FireIcon,
   InstagrammIcon,
-  CrossIcon,
-  InfoIcon
+  InfoIcon,
 };

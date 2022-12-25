@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AccounIcon } from "../../../imgs/icons";
 import FullLogo from "../../../imgs/Logo/FullLogo";
-import Logo from "../../../imgs/Logo/Logo";
+// import Logo from "../../../imgs/Logo/Logo";
 import CartBtn from "../../forms/Buttons/CartBtn";
 import LocationHeader from "./LocationHeader/LocationHeader";
 
 const Header = () => {
   return (
-    <header className="header bg-white">
+    <header className="header bg-white fixed top-0 left-0 right-0">
       <div className="header__top-container border-b border-[#f0f0f0]">
         <div className="container">
           <div className="header__top flex flex-row justify-between py-2.5 text-sm">

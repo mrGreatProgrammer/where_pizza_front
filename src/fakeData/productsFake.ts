@@ -1,8 +1,10 @@
 import { IProduct } from "../types/products";
-import p1 from '../imgs/pizzas/Rectangle.png'
-import p2 from '../imgs/pizzas/Rectangle1.png'
-import p3 from '../imgs/pizzas/Rectangle7.png'
-import p4 from '../imgs/pizzas/Rectangle8.png'
+import p1 from "../imgs/pizzas/Rectangle.png";
+import p2 from "../imgs/pizzas/Rectangle1.png";
+import p3 from "../imgs/pizzas/Rectangle7.png";
+import p4 from "../imgs/pizzas/Rectangle8.png";
+import { CheeseIcon } from "./../imgs/icons";
+import { productTagCardProps } from "../components/ui/ProductTagCard/ProductTagCard";
 
 export const fakeProducts: IProduct[] = [
   {
@@ -19,8 +21,8 @@ export const fakeProducts: IProduct[] = [
       "Курица",
       "Лук",
       "Маслины",
-      "Огурцы маринованные"
-  ],
+      "Огурцы маринованные",
+    ],
   },
   {
     id: 2,
@@ -29,12 +31,7 @@ export const fakeProducts: IProduct[] = [
     productName: "EASY PEASY огуречный расколбас",
     productDiscount: 799,
     productPrice: 549,
-    productReciepe: [
-      "Курица",
-      "Лук",
-      "Соус Карбонара",
-      "Сыр Моцарелла"
-  ],
+    productReciepe: ["Курица", "Лук", "Соус Карбонара", "Сыр Моцарелла"],
   },
   {
     id: 3,
@@ -48,8 +45,8 @@ export const fakeProducts: IProduct[] = [
       "Лук",
       "Перец Халапеньо",
       "Сыр Моцарелла",
-      "Томатный соус"
-  ],
+      "Томатный соус",
+    ],
   },
   {
     id: 4,
@@ -58,12 +55,7 @@ export const fakeProducts: IProduct[] = [
     productName: "4 сезона  ",
     productDiscount: 399,
     productPrice: 249,
-    productReciepe: [
-      "Курица",
-      "Лук",
-      "Перец Халапеньо",
-      "Сыр Моцарелла"
-  ],
+    productReciepe: ["Курица", "Лук", "Перец Халапеньо", "Сыр Моцарелла"],
   },
   {
     id: 5,
@@ -124,5 +116,28 @@ export const fakeProducts: IProduct[] = [
       "Сыр Моцарелла",
       "Томатный соус",
     ],
+  },
+];
+
+export const productTagReciepCardData: productTagCardProps[] = [
+  {
+    id: 1,
+    // icon: <CheeseIcon />,
+    title: "Моцарелла",
+  },
+  {
+    id: 2,
+    // icon: <CheeseIcon />,
+    title: "Моцарелла",
+  },
+  {
+    id: 3,
+    // icon: <CheeseIcon />,
+    title: "Моцарелла",
+  },
+  {
+    id: 4,
+    // icon: <CheeseIcon />,
+    title: "Моцарелла",
   },
 ];

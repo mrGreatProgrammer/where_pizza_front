@@ -1,0 +1,38 @@
+// .ant-radio-button-checked, 
+// .ant-radio-button-wrapper-checked{
+//   background: #ff7010;
+//   color: #fff;
+//   border-radius: 6px;
+// }
+// .ant-radio-group-solid :where(.css-dev-only-do-not-override-9ntgx0).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-9ntgx0).ant-radio-button-wrapper-disabled){
+//   background: #ff7010;
+//   color: #fff;
+//   border-color: #ff7010;
+  
+// }
+// :where(.css-dev-only-do-not-override-9ntgx0).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-9ntgx0).ant-radio-button-wrapper-disabled):first-child{
+//   background: #ff7010;
+//   color: #fff;
+//   border-color: #ff7010;
+  
+// }
+// :where(.css-dev-only-do-not-override-9ntgx0).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-9ntgx0).ant-radio-button-wrapper-disabled){
+//   background: #ff7010;
+//   color: #fff;
+//   border-color: #ff7010;
+// }
+.radioBtn {
+  // background:
+  &:not(
+      :first-child
+    )::before{
+      width: 0;
+    }
+    &:hover {
+    border-color: #ff7010;
+    color: #ff7010;
+  }
+  &::before {
+    width: 0;
+  }
+}

@@ -8,7 +8,7 @@ import {
   PhoneIcon,
 } from "../../../imgs/icons";
 import FullLogo from "../../../imgs/Logo/FullLogo";
-import Logo from "../../../imgs/Logo/Logo";
+// import Logo from "../../../imgs/Logo/Logo";
 
 const footerDataWherePizza = [
   { id: 1, txt: "О компании", link: "" },
