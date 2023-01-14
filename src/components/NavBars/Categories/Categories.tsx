@@ -27,7 +27,7 @@ const Categories = () => {
   return (
     <div className="categories-container my-7">
       <div className="container">
-        <div className="categories flex flex-row justify-between">
+        <div className="categories overflow-x-auto flex flex-row justify-between space-x-3 pb-2">
           {categories.map((e) => (
             <CategoryCard {...e} />
           ))}

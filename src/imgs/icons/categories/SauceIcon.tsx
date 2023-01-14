@@ -8,6 +8,7 @@ const SauceIcon = () => {
       viewBox="0 0 33 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-6 h-6 md:w-8 md:h-8"
     >
       <g clipPath="url(#clip0_11300_3134)">
         <path

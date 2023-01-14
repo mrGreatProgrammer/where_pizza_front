@@ -9,13 +9,13 @@ const SeoTextContainer = () => {
       <div className="container">
         <div className="flex justify-center">
           <div>
-            <h2 className="font-semibold text-3xl">Доставка пиццы в Москве</h2>
+            <h2 className="font-semibold text-lg md:text-3xl">Доставка пиццы в Москве</h2>
             <div
-              className={`seo_txt-container relative overflow-hidden w-[850px] ${
-                showAllTxt ? "h-auto seo_txt-opened" : "h-72 seo_txt-closed"
+              className={`seo_txt-container relative overflow-hidden max-w-[850px] ${
+                showAllTxt ? "h-auto seo_txt-opened" : "h-24 md:h-72 seo_txt-closed"
               }`}
             >
-              <p className="my-2 text-base">
+              <p className="my-2 text-sm md:text-base">
                 Захотелось чего-то вкусного и сытного? Желание простое и
                 понятное, только в холодильнике все не то, и до магазина идти
                 лень. Все пропало? Нет. Недорого заказать пиццу в Москве очень
@@ -42,7 +42,7 @@ const SeoTextContainer = () => {
             <div className="my-5">
               <button
                 onClick={() => setShowAllTxt((prev) => !prev)}
-                className="font-semibold text-base text-primery"
+                className="font-semibold text-sm md:text-base text-primery"
               >
                 {showAllTxt ? "Свернуть" : "Показать полностью"}
               </button>

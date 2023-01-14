@@ -4,20 +4,22 @@ import { AccounIcon } from "../../../imgs/icons";
 import FullLogo from "../../../imgs/Logo/FullLogo";
 // import Logo from "../../../imgs/Logo/Logo";
 import CartBtn from "../../forms/Buttons/CartBtn";
+import BurgerMenu from "../../NavBars/BurgerMenu/BurgerMenu";
 import LocationHeader from "./LocationHeader/LocationHeader";
+import WorkTime from "./WorkTime";
 
 const Header = () => {
   return (
     <header className="header bg-white fixed top-0 left-0 right-0 z-10">
       <div className="header__top-container border-b border-[#f0f0f0]">
         <div className="container">
-          <div className="header__top flex flex-row justify-between py-2.5 text-sm">
+          <div className="header__top md:flex md:flex-row md:justify-between py-2.5 text-xs md:text-sm">
             <LocationHeader />
-            <div className="flex flex-row items-center space-x-10">
-              <div>Время работы: с 11:00 до 23:00</div>
-              <div className="header__account-container text-sm ">
+            <div className="hidden md:flex flex-row items-center space-x-10">
+              <WorkTime />
+              <div className="header__account-container text-xs md:text-sm ">
                 <Link
-                  to={"/loginВойти в аккаунт"}
+                  to={"/auth/login"}
                   className={"flex flex-row space-x-2 items-center"}
                 >
                   <AccounIcon /> <span>Войти в аккаунт</span>
@@ -33,8 +35,11 @@ const Header = () => {
             <div className="logo__container">
               <FullLogo />
             </div>
-            <div className="cart_btn__container">
+            <div className="hidden md:block cart_btn__container">
               <CartBtn />
+            </div>
+            <div className="block md:hidden" >
+              <BurgerMenu />
             </div>
           </div>
         </div>

@@ -19,7 +19,7 @@ const FilterBtn = () => {
     <div>
       <button onClick={onOpen} className="btn border rounded-md py-1.5 bg-white hover:shadow-sm px-3 border-lineGray flex flex-row space-x-2 items-center">
         <FilterIcon />
-        <span className="text-base" >Фильтры</span>
+        <span className="text-sm md:text-base" >Фильтры</span>
       </button>
       <FilterDrawer visibleFilterMiniDrawer={visibleFilterMiniDrawer} onClose={onClose} onFilter={onFilter} />
       {/* <div className="hidden filter__side_bar-container">

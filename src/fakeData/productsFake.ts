@@ -5,6 +5,7 @@ import p3 from "../imgs/pizzas/Rectangle7.png";
 import p4 from "../imgs/pizzas/Rectangle8.png";
 import { CheeseIcon } from "./../imgs/icons";
 import { productTagCardProps } from "../components/ui/ProductTagCard/ProductTagCard";
+import { INavLink } from "../types/app";
 
 export const fakeProducts: IProduct[] = [
   {
@@ -141,3 +142,48 @@ export const productTagReciepCardData: productTagCardProps[] = [
     title: "Моцарелла",
   },
 ];
+
+
+
+export const navFake:INavLink[] = [
+  {
+    id: 1, 
+    title: "Акции",
+    link: "/"
+  },
+  {
+    id: 2, 
+    title: "О компании",
+    link: "/"
+  },
+  {
+    id: 3, 
+    title: "Пользовательское соглашение",
+    link: "/"
+  },
+  {
+    id: 4, 
+    title: "Условия гарантии",
+    link: "/"
+  },
+  {
+    id: 5, 
+    title: "Ресторан",
+    link: "/"
+  },
+  {
+    id: 6, 
+    title: "Контакты",
+    link: "/"
+  },
+  {
+    id: 7, 
+    title: "Поддержка",
+    link: "/"
+  },
+  {
+    id: 8, 
+    title: "Отследить заказ",
+    link: "/"
+  },
+]

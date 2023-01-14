@@ -1,3 +1,6 @@
+.combos_container{
+  grid-template-columns: repeat(4, 280px);
+}
 .combos__cards {
   .comobos-img__container {
     background-repeat: no-repeat;

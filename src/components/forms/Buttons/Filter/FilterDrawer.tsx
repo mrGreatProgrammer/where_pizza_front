@@ -1,5 +1,5 @@
 import React from "react";
-import { Drawer, Space } from "antd";
+import { Drawer, DrawerProps, Space } from "antd";
 import type { RadioChangeEvent } from "antd";
 import "./FilterDrawer.scss";
 import RadioBtns from "../../RadioBtns/RadioBtns";
@@ -17,6 +17,8 @@ type filterMiniDrawerProps = {
   onClose: any;
   onFilter: any;
 };
+
+let placement: DrawerProps['placement'] = "top"
 
 const FilterDrawer = ({
   visibleFilterMiniDrawer,
@@ -53,14 +55,24 @@ const FilterDrawer = ({
     onClose();
   }
 
+  
+  if(window.outerWidth<760){
+    placement = "bottom";
+  }else{ 
+    placement = "right";
+  }
+
   function acceptFilter() {}
 
   return (
     <>
       <Drawer
         // className={styles.main}
+        className="rounded-t-2xl"
+        placement={placement}
         title="Фильтры"
-        placement={"right"}
+        // placement={"right"}
+        height={"90%"}
         width={520}
         onClose={onClose}
         open={visibleFilterMiniDrawer}

@@ -5,12 +5,14 @@ import { pokemonApi } from "../http/services/post";
 import { useDispatch, useSelector } from "react-redux";
 import type { TypedUseSelectorHook } from "react-redux";
 import counterSlice from "./counterSlice/counterSlice";
-import productsSlice  from "./productsSlice/productsSlice";
+import productsSlice from "./productsSlice/productsSlice";
+import appSlice from "./appSlice/app";
 
 export const store = configureStore({
   reducer: {
     // Add the generated reducer as a specific top-level slice
     [pokemonApi.reducerPath]: pokemonApi.reducer,
+    appSlice,
     counterSlice: counterSlice,
     productsSlice: productsSlice,
   },

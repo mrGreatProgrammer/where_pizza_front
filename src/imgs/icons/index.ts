@@ -18,6 +18,7 @@ import PhoneIcon from "./PhoneIcon";
 import CrossIcon from "./CrossIcon";
 import InfoIcon from "./InfoIcon";
 import CheeseIcon from "./CheeseIcon";
+import SendIcon from './SendIcon';
 
 export {
   AccounIcon,
@@ -30,6 +31,7 @@ export {
   DrinksIcon,
   SauceIcon,
   SearcherIcon,
+  SendIcon,
   SushiIcon,
   SnacksIcon,
   LocationIcon,

@@ -11,7 +11,10 @@ module.exports = {
         bgGrey: "#F9F9F9",
         red: "#E23535",
         lightPrimery: "#FFEEE2",
-        green: "#24D17E"
+        green: "#24D17E",
+      },
+      boxShadow: {
+        gtr: "10px 35px 60px 15px #000000",
       },
     },
   },

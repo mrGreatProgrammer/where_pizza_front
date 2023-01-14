@@ -25,11 +25,11 @@ const Product = ({
   return (
     <>
       <div className="product__card bg-white border border-lineGray rounded-[20px]">
-        <div className="relative">
+        <div className="relative flex flex-row md:flex-col">
           {productLabelTxt && (
             <ProductLabel productLabelTxt={productLabelTxt} />
           )}
-          <div className="product__img-container">
+          <div className="product__img-container flex items-center justify-center  ">
             <img
               className="product__img-img"
               src={productImage.src}
@@ -43,26 +43,26 @@ const Product = ({
                   onClick={() => {
                     setModalVisibility(true);
                   }}
-                  className="product__name text-lg font-semibold"
+                  className="product__name text-sm md:text-lg font-semibold"
                 >
                   {productName}
                 </h6>
               </div>
-              <div className="product__reciepe-container mt-3 text-base max-w-[260px] h-full flex items-center">
+              <div className="product__reciepe-container mt-3 text-xs md:text-base w-44 md:max-w-[260px] h-full flex items-center">
                 <p className="truncate">{productReciepe.join(", ")}</p>
               </div>
             </div>
             <div className="product__bottom_content-container mt-4 flex flex-row justify-between">
-              <div className="product__btn-container">
+              <div className="hidden md:block product__btn-container">
                 <BtnChooseProduct txt="Выбрать" />
               </div>
-              <div className="product__price-container">
+              <div className="product__price-container flex flex-row-reverse md:flex-col items-center md:items-start">
                 {productDiscount && (
                   <s className="product__discount text-sm text-txtGrey">
                     {productDiscount} ₽
                   </s>
                 )}
-                <p className="product__price text-primery text-lg font-semibold">
+                <p className="product__price text-primery text-sm md:text-lg font-semibold bg-lightPrimery md:bg-transparent rounded-md py-1.5 px-4 md:py-0 md:px-0  mr-3 md:mr-0">
                  от {productPrice} ₽
                 </p>
               </div>

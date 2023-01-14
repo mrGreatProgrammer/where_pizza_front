@@ -34,7 +34,7 @@ const Combos = () => {
   return (
     <div>
       <div className="container">
-        <div className="flex flex-row justify-between">
+        <div className="combos_container grid gap-x-5 md:flex flex-row md:justify-between overflow-x-auto overflow-y-hidden md:space-x-5">
           {combos.map((e) => (
             <CombosCards
               key={e.id}

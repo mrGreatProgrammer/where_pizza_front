@@ -11,13 +11,13 @@ const GroupedProducts = ({ title, loading, err, products }: IProductsGroupProps)
       <div className="container">
         <div className="flex flex-row items-center justify-between">
           <div>
-            <h3 className="font-semibold text-4xl">{title}</h3>
+            <h3 className="font-semibold text-2xl md:text-4xl">{title}</h3>
           </div>
           <div>
             <FilterBtn />
           </div>
         </div>
-        <div className="mt-8 grid grid-cols-4 gap-x-[30px] gap-y-7 products__container">
+        <div className="mt-8 grid md:grid-cols-4 md:gap-x-[30px] gap-y-3 md:gap-y-7 products__container">
           {products?products?.map(e=>
             <Product 
             {...e} />
