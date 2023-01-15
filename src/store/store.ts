@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 // Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { pokemonApi } from "../http/services/post";
@@ -7,19 +7,56 @@ import type { TypedUseSelectorHook } from "react-redux";
 import counterSlice from "./counterSlice/counterSlice";
 import productsSlice from "./productsSlice/productsSlice";
 import appSlice from "./appSlice/app";
+import userSlice from "./userSlice/userSlice";
 
-export const store = configureStore({
-  reducer: {
-    // Add the generated reducer as a specific top-level slice
-    [pokemonApi.reducerPath]: pokemonApi.reducer,
-    appSlice,
-    counterSlice: counterSlice,
-    productsSlice: productsSlice,
-  },
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+const rootReducer = combineReducers({
+  appSlice,
+  userSlice,
+  counterSlice: counterSlice,
+  productsSlice: productsSlice,
+  [pokemonApi.reducerPath]: pokemonApi.reducer,
+});
+
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["appSlice", "userSlice"],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  // reducer: {
+  //   persistedReducer,
+  //   // Add the generated reducer as a specific top-level slice
+  //   [pokemonApi.reducerPath]: pokemonApi.reducer,
+  //   // appSlice,
+  //   // userSlice,
+  //   // counterSlice: counterSlice,
+  //   // productsSlice: productsSlice,
+  //   // ...persistedReducer
+  // },
+  reducer: persistedReducer,
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(pokemonApi.middleware),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(pokemonApi.middleware),
 });
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
@@ -33,3 +70,6 @@ export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+export const persistor = persistStore(store);
+export default store

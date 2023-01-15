@@ -3,6 +3,9 @@ import { IRegisterForm } from "../../../../types/forms";
 import Input from "../../Input/Input";
 import { useForm } from "react-hook-form";
 import SubmitBtn from "../../Buttons/SubmitBtn";
+import { useAppDispatch, useAppSelector } from "../../../../store/store";
+import { registerApi } from "../../../../http/user/user";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const {
@@ -10,13 +13,31 @@ const RegisterForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IRegisterForm>({ mode: "onChange" });
+  const dispatch = useAppDispatch();
+  const { error, loading, token, user } = useAppSelector(
+    (state) => state.userSlice
+  );
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const fromPage = location.state?.from?.pathname || "/";
+
+  React.useEffect(() => {
+    if (user) {
+      navigate(fromPage, { replace: true });
+    }
+  }, [user]);
 
   function handlerSubmit(data: any) {
-    console.log(data);
+    // console.log(data);
+
+    dispatch(registerApi(data));
   }
 
   return (
-    <div className="flex justify-center mt-4">
+    <div className="flex justify-center mt-4 flex-col">
+      {error && <h3 className="text-red text-base font-bold" >{`${error}`}</h3> }
       <form onSubmit={handleSubmit(handlerSubmit)}>
         <div className="w-[320px]">
           <Input
@@ -75,7 +96,7 @@ const RegisterForm = () => {
             onClick={""}
             txt={"Зарегистрироватся"}
             disabled={false}
-            loading={false}
+            loading={loading}
           />
         </div>
       </form>

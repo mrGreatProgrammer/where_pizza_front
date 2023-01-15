@@ -1,23 +1,52 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router-dom";
+import { logInApi } from "../../../../http/user/user";
 import { ILoginForm } from "../../../../types/forms";
 import SubmitBtn from "../../Buttons/SubmitBtn";
 import Input from "../../Input/Input";
+import { useAppDispatch, useAppSelector } from "./../../../../store/store";
 
 const LoginForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ILoginForm>({mode: "onChange"});
+  } = useForm<ILoginForm>({ mode: "onChange" });
+  const dispatch = useAppDispatch();
+  const { error, loading, token, user } = useAppSelector(
+    (state) => state.userSlice
+  );
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  function handlerSubmit(data:any) {
-    console.log(data)
+  const fromPage = location.state?.from?.pathname || "/";
+
+  React.useEffect(()=>{
+    if(user){
+      navigate(fromPage, {replace: true });
+    }
+  }, [user])
+
+  function handlerSubmit(data: any) {
+    console.log(data);
+    //  const res = dispatch(logInApi(data));
+    dispatch(logInApi(data));
+    //  console.log("res", res);
+    //  navigate(fromPage, {replace: true })
   }
+  // const handlerSubmit = async (data: any) => {
+  //   console.log(data);
+  //    const res = await dispatch(logInApi(data));
+  //    console.log("res", res);
+  //    navigate(fromPage, {replace: true })
+  // }
 
   return (
-    <div className="flex justify-center mt-4">
-      <form onSubmit={handleSubmit(handlerSubmit)} >
+    <div className="flex justify-center mt-4 flex-col">
+    {error && <h3 className="text-red text-base font-bold" >{`${error}`}</h3> }
+
+      <form onSubmit={handleSubmit(handlerSubmit)}>
         <div className="w-[320px]">
           <Input
             className={""}
@@ -29,11 +58,11 @@ const LoginForm = () => {
               },
               minLength: {
                 value: 6,
-                message: "Минимум 8 символов"
+                message: "Минимум 8 символов",
               },
-              maxLength:{
+              maxLength: {
                 value: 32,
-                message: "Максимум 32 сивола"
+                message: "Максимум 32 сивола",
               },
             })}
             inpName={"tel"}
@@ -55,19 +84,17 @@ const LoginForm = () => {
                 },
                 minLength: {
                   value: 8,
-                  message: "Минимум 8 символов"
+                  message: "Минимум 8 символов",
                 },
-                maxLength:{
+                maxLength: {
                   value: 32,
-                  message: "Максимум 32 сивола"
+                  message: "Максимум 32 сивола",
                 },
                 pattern: {
                   message: "Hello",
-                  value: /^\S+$/g
+                  value: /^\S+$/g,
                   // value: /^(\S)([a-zA-Z])(\D)+$/g
-                  
-                  
-                }
+                },
               }),
             }}
             inpName={"password"}
@@ -83,7 +110,7 @@ const LoginForm = () => {
             onClick={""}
             txt={"Войти"}
             disabled={false}
-            loading={false}
+            loading={loading}
           />
         </div>
       </form>

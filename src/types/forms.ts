@@ -27,7 +27,7 @@ export interface ISubmitBtnProps {
 
 
 export interface ILoginForm {
-  tel: string;
+  tel: string;  
   password: string;
 }
 
@@ -35,4 +35,11 @@ export interface IRegisterForm {
   fullName: string;
   tel: string;
   password: string;
+}
+
+export interface IUserData {
+  id: number;
+  fullName: string;
+  tel: string;
+  role: string;
 }

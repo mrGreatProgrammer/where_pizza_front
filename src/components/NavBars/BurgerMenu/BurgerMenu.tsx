@@ -12,6 +12,7 @@ import "./BurgerMenu.scss";
 const BurgerMenu = () => {
   const dispatch = useAppDispatch();
   const { burgerOpened } = useAppSelector((state) => state.appSlice);
+  const {user} = useAppSelector(state=>state.userSlice)
 
   return (
     <div className="a-relative flex justify-center items-center h-full">
@@ -29,12 +30,29 @@ const BurgerMenu = () => {
         }`}
       >
         <div className="header__account-container text-base border-lineGray border-b-[1px] px-5 py-5">
+        {user ? (
+                  // <Popover
+                  //   placement="bottom"
+                  //   title={text}
+                  //   content={content}
+                  //   trigger="hover"
+                  // >
+                    <Link
+                      to={"/user/profile"}
+                      className={"flex flex-row space-x-2 items-center"}
+                    >
+                      <AccounIcon />
+                      <span>{user?.fullName}</span>
+                    </Link>
+                  // {/* </Popover> */}
+                ) : (
           <Link
             to={"/auth/login"}
             className={"flex flex-row space-x-2 items-center"}
           >
             <AccounIcon /> <span>Войти в аккаунт</span>
           </Link>
+                )}
         </div>
         <ul className="px-5 py-5 space-y-5 border-lineGray border-b-[1px]">
           {navFake.map((e: INavLink) => (
