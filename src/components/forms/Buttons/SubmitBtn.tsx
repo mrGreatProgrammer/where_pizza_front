@@ -12,6 +12,7 @@ const SubmitBtn = ({
   return (
     <div className="my-4">
       <button
+      onClick={onClick}
         disabled={disabled || loading}
         className={`submit_btn bg-primery disabled:bg-lightPrimery text-sm md:text-base text-white min-w-[320px] min-h-[44px] rounded-md ${className}`}
       >

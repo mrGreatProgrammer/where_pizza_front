@@ -83,9 +83,9 @@ const Header = () => {
       <div className="header__bottom-container border-b border-[#f0f0f0]">
         <div className="container">
           <div className="header_bottom py-3 flex flex-row justify-between">
-            <div className="logo__container">
+            <Link to={'/'} className="logo__container">
               <FullLogo />
-            </div>
+            </Link>
             <div className="hidden md:block cart_btn__container">
               <CartBtn />
             </div>

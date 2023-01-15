@@ -22,28 +22,6 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<MainPage />}></Route>
-          {/* {user ? (
-            <>
-              <Route path="/basket" element={<BasketPage />} />
-
-              <Route path="/user/profile" element={<UserProfilePage />}>
-                <Route
-                  path="/user/profile/settings"
-                  element={<UserSettings />}
-                ></Route>
-                <Route
-                  path="/user/profile/order_history"
-                  element={<UserHistoryOrders />}
-                ></Route>
-              </Route>
-            </>
-          ) : (
-            <>
-              <Route path="/auth/register" element={<Register />}></Route>
-              <Route path="/auth/login" element={<Login />}></Route>
-            </>
-          )} */}
-
           <Route
             path="/basket"
             element={
@@ -84,6 +62,7 @@ function App() {
           <Route path="/auth/login" element={<Login />}></Route>
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }
