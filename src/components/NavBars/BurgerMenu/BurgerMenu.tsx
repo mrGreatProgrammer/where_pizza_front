@@ -4,6 +4,7 @@ import { navFake } from "../../../fakeData/productsFake";
 import { AccounIcon } from "../../../imgs/icons";
 import { toggleBurgerMenuAC } from "../../../store/appSlice/app";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
+import { logoutAC } from "../../../store/userSlice/userSlice";
 import { INavLink } from "../../../types/app";
 import SocialContainer from "../../ui/Footer/SocialContainer";
 import WorkTime from "../../ui/Header/WorkTime";
@@ -29,31 +30,52 @@ const BurgerMenu = () => {
           burgerOpened ? "h-screen" : "h-0 hidden"
         }`}
       >
-        <div className="header__account-container text-base border-lineGray border-b-[1px] px-5 py-5">
-          {user ? (
-            // <Popover
-            //   placement="bottom"
-            //   title={text}
-            //   content={content}
-            //   trigger="hover"
-            // >
-            <Link
-              to={"/user/profile"}
-              className={"flex flex-row space-x-2 items-center"}
-            >
-              <AccounIcon />
-              <span>{user?.fullName}</span>
-            </Link>
-          ) : (
-            // {/* </Popover> */}
+        {user ? (
+          // <Popover
+          //   placement="bottom"
+          //   title={text}
+          //   content={content}
+          //   trigger="hover"
+          // >
+          <>
+            <div className="header__account-container text-base border-lineGray border-b-[1px] px-5 py-5">
+              <Link
+                to={"/user/profile"}
+                className={"flex flex-row space-x-2 items-center"}
+              >
+                <AccounIcon />
+                <span>{user?.fullName}</span>
+              </Link>
+            </div>
+            <div className="text-base border-lineGray border-b-[1px] px-5 py-5">
+              <ul className="space-y-5">
+                <li>
+                  <Link to={"/user/profile/order_history"}>
+                    История заказов
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/user/profile"}>Настройки</Link>
+                </li>
+                <li className="text-txtGrey">
+                  <button onClick={() => dispatch(logoutAC())}>
+                    Выход из аккаунта
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </>
+        ) : (
+          // {/* </Popover> */}
+          <div className="header__account-container text-base border-lineGray border-b-[1px] px-5 py-5">
             <Link
               to={"/auth/login"}
               className={"flex flex-row space-x-2 items-center"}
             >
               <AccounIcon /> <span>Войти в аккаунт</span>
             </Link>
-          )}
-        </div>
+          </div>
+        )}
         <ul className="px-5 py-5 space-y-5 border-lineGray border-b-[1px]">
           {navFake.map((e: INavLink) => (
             <li className="text-base" key={e.id}>
