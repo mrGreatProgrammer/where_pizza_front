@@ -8,7 +8,7 @@ export const registerApi = createAsyncThunk(
     try {
       console.log({ ...formData, role: "USER" });
       const { status, data } = await axios.post(
-        "http://192.168.0.103/api/user/registration",
+        "http://192.168.1.111:4000/api/user/registration",
         {
           ...formData,
           role: "USER",
@@ -39,7 +39,7 @@ export const logInApi = createAsyncThunk(
     try {
       console.log({ ...formData, role: "USER" });
       const { status, data } = await axios.post(
-        "http://192.168.0.103:4000/api/user/login",
+        "http://192.168.1.111:4000/api/user/login",
         formData
       );
 
