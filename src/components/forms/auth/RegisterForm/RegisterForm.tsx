@@ -37,6 +37,7 @@ const RegisterForm = () => {
 
   return (
     <div className="flex justify-center mt-4 flex-col">
+      {/* <button onClick={()=>localStorage.clear()} >clear</button> */}
       {error && <h3 className="text-red text-base font-bold" >{`${error}`}</h3> }
       <form onSubmit={handleSubmit(handlerSubmit)}>
         <div className="w-[320px]">

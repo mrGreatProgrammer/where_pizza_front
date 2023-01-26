@@ -42,4 +42,6 @@ export interface IUserData {
   fullName: string;
   tel: string;
   role: string;
+  email: string;
+  birthDate: any;
 }

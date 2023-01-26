@@ -17,7 +17,6 @@ const initialState: AppState = {
   burgerOpened: false,
   authorized: false,
   userInfo: null
-
 };
 
 export const appSlice = createSlice({

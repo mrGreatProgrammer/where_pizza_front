@@ -25,7 +25,7 @@ const MainPage = () => {
       />
 
       <SeoTextContainer />
-      <Footer />
+      {/* <Footer /> */}
       <CartBtnMobile />
     </div>
   );

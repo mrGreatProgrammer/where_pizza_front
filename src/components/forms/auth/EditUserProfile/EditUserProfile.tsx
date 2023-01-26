@@ -1,3 +1,4 @@
+import { DatePicker } from "antd";
 import React from "react";
 import { useAppSelector } from "../../../../store/store";
 import CardEditer from "../../../ui/CardEditer/CardEditer";
@@ -61,24 +62,39 @@ const EditUserProfile = () => {
               formController={null}
               inpName="email"
               className={""}
-              defaultValue={user?.fullName}
+              defaultValue={user?.email}
               errMsg={""}
               label={"Почта"}
               inpType={"mail"}
             />
           </div>
           <div>
+            <DatePicker
+            
+            />
+            {/* <Input
+              elId=""
+              formController={null}
+              inpName="birthDate"
+              className={""}
+              defaultValue={user?.birthDate}
+              errMsg={""}
+              label={"Дата рождения"}
+              inpType={"text"}
+            /> */}
+          </div>
+          {/* <div>
             <Input
               elId=""
               formController={null}
-              inpName="email"
+              inpName="address"
               className={""}
-              defaultValue={user?.fullName}
+              defaultValue={user?.address}
               errMsg={""}
               label={"Дата рождения"}
               inpType={"text"}
             />
-          </div>
+          </div> */}
         </div>
       </CardEditer>
     </div>

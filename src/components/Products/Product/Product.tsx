@@ -31,7 +31,7 @@ const Product = ({
           )}
           <div className="product__img-container flex items-center justify-center  ">
             <img
-              className="product__img-img"
+              className="product__img-img rounded-3xl"
               src={productImage.src}
               alt={productImage.altTxt}
             />

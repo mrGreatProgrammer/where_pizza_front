@@ -20,3 +20,13 @@ export interface IProductsGroupProps {
   err: string;
   products: IProduct[] | null;
 }
+
+
+export interface IOrderItemProps {
+  orderNumber: number|string;
+  orderDate: string;
+  orderSumPrice: number;
+  orderStatus: string;
+  orderPayed: string;
+  orderDeliveryAddress: string;
+}

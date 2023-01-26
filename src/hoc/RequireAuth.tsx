@@ -13,7 +13,7 @@ const RequireAuth = ({children}: RequireAuthProps ): JSX.Element => {
 
     if(!user){
         return <Navigate to="/auth/login" state={{from: location}} />
-    }
+    } 
 
   return children
 }

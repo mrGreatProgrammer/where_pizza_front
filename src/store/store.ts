@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 // Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { pokemonApi } from "../http/services/post";
+import { productsApi } from "../http/services/post";
 import { useDispatch, useSelector } from "react-redux";
 import type { TypedUseSelectorHook } from "react-redux";
 import counterSlice from "./counterSlice/counterSlice";
@@ -26,7 +26,7 @@ const rootReducer = combineReducers({
   userSlice,
   counterSlice: counterSlice,
   productsSlice: productsSlice,
-  [pokemonApi.reducerPath]: pokemonApi.reducer,
+  [productsApi.reducerPath]: productsApi.reducer,
 });
 
 const persistConfig = {
@@ -56,7 +56,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(pokemonApi.middleware),
+    }).concat(productsApi.middleware),
 });
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
