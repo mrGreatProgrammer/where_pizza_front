@@ -1,26 +1,25 @@
 import React from "react";
+import { addProductToCartAC } from "../../../store/cartSlice";
 import { IProduct } from "../../../types/products";
 import BtnChooseProduct from "../../forms/Buttons/BtnChooseProduct";
 import ModalProduct from "../../Modal/ModalProduct";
 import ProductLabel from "../../ui/ProductLabel/ProductLabel";
+import { useAppDispatch } from "./../../../store/store";
 
 const Product = ({
   id,
-  productDiscount,
-  productImage,
+  discount,
+  img,
   productLabelTxt,
-  productName,
-  productPrice,
-  productReciepe,
+  name,
+  price,
+  about,
 }: IProduct): JSX.Element => {
   const [modalVisibility, setModalVisibility] = React.useState(false);
+  const dispatch = useAppDispatch();
 
-  function showModal() {
-    
-  }
-  function closeModal(){
-    
-  }
+  function showModal() {}
+  function closeModal() {}
 
   return (
     <>
@@ -32,8 +31,8 @@ const Product = ({
           <div className="product__img-container flex items-center justify-center  ">
             <img
               className="product__img-img rounded-3xl"
-              src={productImage.src}
-              alt={productImage.altTxt}
+              src={`http://localhost:4000${JSON.parse(img)[0]}`}
+              alt={`where_pizza${id}`}
             />
           </div>
           <div className="mt-4 pt-4 px-5 pb-5">
@@ -45,25 +44,33 @@ const Product = ({
                   }}
                   className="product__name text-sm md:text-lg font-semibold"
                 >
-                  {productName}
+                  {name}
                 </h6>
               </div>
               <div className="product__reciepe-container mt-3 text-xs md:text-base w-44 md:max-w-[260px] h-full flex items-center">
-                <p className="truncate">{productReciepe.join(", ")}</p>
+                <p className="truncate">{about}</p>
               </div>
             </div>
             <div className="product__bottom_content-container mt-4 flex flex-row justify-between">
               <div className="hidden md:block product__btn-container">
-                <BtnChooseProduct txt="Выбрать" />
+                <BtnChooseProduct
+                  onClick={() => {
+                    let count = 1;
+                    dispatch(
+                      addProductToCartAC({ id, discount, price, count })
+                    );
+                  }}
+                  txt="Выбрать"
+                />
               </div>
               <div className="product__price-container flex flex-row-reverse md:flex-col items-center md:items-start">
-                {productDiscount && (
+                {discount && (
                   <s className="product__discount text-sm text-txtGrey">
-                    {productDiscount} ₽
+                    {discount} ₽
                   </s>
                 )}
                 <p className="product__price text-primery text-sm md:text-lg font-semibold bg-lightPrimery md:bg-transparent rounded-md py-1.5 px-4 md:py-0 md:px-0  mr-3 md:mr-0">
-                 от {productPrice} ₽
+                  от {price} ₽
                 </p>
               </div>
             </div>

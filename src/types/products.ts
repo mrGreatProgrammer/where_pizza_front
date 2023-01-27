@@ -5,25 +5,24 @@ type productImage = {
 };
 
 export interface IProduct {
-  id: number | string;
-  productLabelTxt: string;
-  productImage: productImage;
-  productName: string;
-  productReciepe: string[];
-  productPrice: number;
-  productDiscount: number;
+  id?: number | string;
+  productLabelTxt?: string;
+  img: any;
+  name: string;
+  about: string[];
+  price: number;
+  discount: number;
 }
 
 export interface IProductsGroupProps {
   title: string;
   loading: boolean;
   err: string;
-  products: IProduct[] | null;
+  products: IProduct[] | null | undefined;
 }
 
-
 export interface IOrderItemProps {
-  orderNumber: number|string;
+  orderNumber: number | string;
   orderDate: string;
   orderSumPrice: number;
   orderStatus: string;

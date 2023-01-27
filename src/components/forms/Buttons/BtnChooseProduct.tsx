@@ -1,11 +1,19 @@
 import React from "react";
 
-type BtnChooseProductPropsType = { txt: string };
+type BtnChooseProductPropsType = { txt: string; onClick: any };
 
-const BtnChooseProduct = ({ txt }: BtnChooseProductPropsType): JSX.Element => {
-  return <button className="bg-primery px-8 py-[13px] text-white text-base rounded-md" >
-    {txt}
-  </button>;
+const BtnChooseProduct: React.FC<BtnChooseProductPropsType> = ({
+  txt,
+  onClick,
+}: BtnChooseProductPropsType): JSX.Element => {
+  return (
+    <button
+      onClick={onClick}
+      className="bg-primery px-8 py-[13px] text-white text-base rounded-md"
+    >
+      {txt}
+    </button>
+  );
 };
 
 export default BtnChooseProduct;

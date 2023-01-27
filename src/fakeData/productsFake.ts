@@ -1,4 +1,3 @@
-import { IProduct } from "../types/products";
 import p1 from "../imgs/pizzas/Rectangle.png";
 import p2 from "../imgs/pizzas/Rectangle1.png";
 import p3 from "../imgs/pizzas/Rectangle7.png";
@@ -7,7 +6,7 @@ import { CheeseIcon } from "./../imgs/icons";
 import { productTagCardProps } from "../components/ui/ProductTagCard/ProductTagCard";
 import { INavLink } from "../types/app";
 
-export const fakeProducts: IProduct[] = [
+export const fakeProducts: any[] = [
   {
     id: 1,
     productImage: { id: 1, src: p1, altTxt: "" },

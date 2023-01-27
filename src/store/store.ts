@@ -1,7 +1,6 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 // Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { productsApi } from "../http/services/post";
 import { useDispatch, useSelector } from "react-redux";
 import type { TypedUseSelectorHook } from "react-redux";
 import counterSlice from "./counterSlice/counterSlice";
@@ -20,19 +19,22 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { productsApi } from "../http/services/products";
+import cartSlice from "./cartSlice";
 
 const rootReducer = combineReducers({
   appSlice,
   userSlice,
   counterSlice: counterSlice,
   productsSlice: productsSlice,
+  cartSlice: cartSlice,
   [productsApi.reducerPath]: productsApi.reducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["appSlice", "userSlice"],
+  whitelist: ["appSlice", "userSlice", "cartSlice"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -72,4 +74,4 @@ export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const persistor = persistStore(store);
-export default store
+export default store;

@@ -6,10 +6,12 @@ import Combos from "../components/NavBars/Comobos/Combos";
 import GroupedProducts from "../components/Products/GroupedProducts/GroupedProducts";
 import SeoTextContainer from "../components/SeoTextContainer/SeoTextContainer";
 import Footer from "../components/ui/Footer/Footer";
+import { useGetAllProductsQuery } from "../http/services/products";
 import { useAppSelector } from "../store/store";
 
 const MainPage = () => {
   const {products} = useAppSelector(state=>state.productsSlice)
+  const {data, isError, isLoading} = useGetAllProductsQuery(1);
 
   return (
     <div>
@@ -19,9 +21,9 @@ const MainPage = () => {
 
       <GroupedProducts
         title={"Пицца"}
-        products={products}
-        loading={false}
-        err=""
+        products={data?.rows}
+        loading={isLoading}
+        err={isError?"error":""}
       />
 
       <SeoTextContainer />
