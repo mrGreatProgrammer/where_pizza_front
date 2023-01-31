@@ -7,7 +7,7 @@ import { IProduct } from "../../types/products";
 export const productsApi = createApi({
   reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api/products/",
+    baseUrl: "http://192.168.0.103:4000/api/products/",
     // prepareHeaders: (headers, { getState }) => {
     //   // By default, if we have a token in the store, let's use that for authenticated requests
     //   const token = (getState() as RootState).appSlice.token;

@@ -1,10 +1,10 @@
 /* h1,h2,h3,h4,h5,h6,p,span,button{ */
 /* } */
 
-*{
+* {
   /* font-family: SF Pro Text; */
 }
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   border-radius: 20px;
   min-width: 5px;
   min-height: 5px;
@@ -12,33 +12,43 @@
   max-height: 15px;
   box-shadow: inset 0px 0px 2px #ccc;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: #FF70108a;
+  background: #ff70108a;
 }
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
   /* border-radius: 50%; */
   /* background: red; */
 }
-::-webkit-scrollbar-button{
+::-webkit-scrollbar-button {
   /* border-radius: 50%; */
   /* background: red; */
 }
-::-webkit-scrollbar-track-piece{
+::-webkit-scrollbar-track-piece {
   border-radius: 50px;
   /* background: red; */
 }
 
-.footer__line{
+.footer__line {
   background: #f0f0f0;
   width: 100%;
   height: 1px;
 }
 
-.input{
+.input {
   display: flex;
   flex-direction: column;
-  >input{
-
+  > input {
   }
+}
+
+.submit_btn {
+  transition: background .2s ease;
+  &:active {
+    background: #FF4003;
+  }
+}
+
+.message__added_to_cart{
+  
 }

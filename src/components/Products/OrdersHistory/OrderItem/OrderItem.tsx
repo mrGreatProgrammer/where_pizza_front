@@ -1,6 +1,7 @@
 import React from "react";
 import { IOrderItemProps } from "../../../../types/products";
 import img1 from "../../../../imgs/pizzas/Rectangle7.png";
+import moment from "moment";
 
 const OrderItem: React.FC<IOrderItemProps> = ({
   orderDate,
@@ -9,21 +10,25 @@ const OrderItem: React.FC<IOrderItemProps> = ({
   orderPayed,
   orderStatus,
   orderSumPrice,
+  orderTotalCount,
 }: IOrderItemProps): JSX.Element => {
   return (
-    <div className="border border-lineGray rounded-xl p-3">
+    <div className="max-w-[850px] border border-lineGray rounded-xl p-3 mb-5">
       <div>
         <div className="flex flex-row">
-          <div className="order__line w-1 h-44 rounded-3xl bg-primery mr-3"></div>
-          <div className="order__desc_txt">
-            <div className="grid grid-cols-2">
+          <div className="order__line w-1 h-44 md:h-11 rounded-3xl bg-primery mr-3"></div>
+          <div className="order__desc_txt w-full">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-9">
+              {/* <div className="grid grid-cols-2 gap-x-16"> */}
               <div>
                 <div className="label__order text-txtGrey text-xs mb-0.5">
                   Заказ
                 </div>
                 <div className="mb-3">
                   <span>№{orderNumber} </span>
-                  <span className="text-txtGrey text-xs">{orderDate}</span>
+                  <span className="text-txtGrey text-xs">
+                    {moment(orderDate).format("YY.MM.DD")}
+                  </span>
                 </div>
               </div>
               <div>
@@ -34,8 +39,8 @@ const OrderItem: React.FC<IOrderItemProps> = ({
                   <span>{orderSumPrice}</span> <span>₽</span>
                 </div>
               </div>
-            </div>
-            <div className="grid grid-cols-2">
+              {/* </div> */}
+              {/* <div className="grid grid-cols-2 gap-x-16"> */}
               <div>
                 <div className="label__order text-txtGrey text-xs mb-0.5">
                   Статус
@@ -52,8 +57,9 @@ const OrderItem: React.FC<IOrderItemProps> = ({
                   <p>{orderPayed}</p>
                 </div>
               </div>
+              {/* </div> */}
             </div>
-            <div>
+            <div className="block md:hidden">
               <div className="label__order text-txtGrey text-xs mb-0.5">
                 Адрес
               </div>
@@ -63,35 +69,47 @@ const OrderItem: React.FC<IOrderItemProps> = ({
             </div>
           </div>
         </div>
+
         <div>
-          <div className="line border-b border-lineGray my-3"></div>
-          <div className="my-2 flex space-x-[-10px]">
-            <div>
-              <img
-                className="rounded-full"
-                src={img1}
-                alt=""
-                width={40}
-                height={40}
-              />
+            <div className="line border-b  border-lineGray my-3"></div>
+          <div className="md:flex md:flex-row md:justify-between" >
+            <div className="hidden md:block">
+              <div className="label__order text-txtGrey text-xs mb-0.5">
+                Адрес
+              </div>
+              <div className="mb-3">
+                <p>{orderDeliveryAddress}</p>
+              </div>
             </div>
-            <div>
-              <img
-                className="rounded-full"
-                src={img1}
-                alt=""
-                width={40}
-                height={40}
-              />
-            </div>
-            <div>
-              <img
-                className="rounded-full"
-                src={img1}
-                alt=""
-                width={40}
-                height={40}
-              />
+
+            <div className="my-2 flex space-x-[-10px]">
+              <div>
+                <img
+                  className="rounded-full"
+                  src={img1}
+                  alt=""
+                  width={40}
+                  height={40}
+                />
+              </div>
+              <div>
+                <img
+                  className="rounded-full"
+                  src={img1}
+                  alt=""
+                  width={40}
+                  height={40}
+                />
+              </div>
+              <div>
+                <img
+                  className="rounded-full"
+                  src={img1}
+                  alt=""
+                  width={40}
+                  height={40}
+                />
+              </div>
             </div>
           </div>
           <div className="line border-b border-lineGray my-3"></div>

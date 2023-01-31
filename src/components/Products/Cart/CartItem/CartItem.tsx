@@ -1,34 +1,42 @@
 import React from "react";
 import pizza from "../../../../imgs/pizzas/Rectangle7.png";
-import { ICartItemProps } from "../../../../types/cart";
+import { IProductCart } from "../../../../types/cart";
 import IncDecBtns from "../../../forms/Buttons/IncDecBtns";
 
-const CartItem: React.FC<ICartItemProps> = ({
+const CartItem: React.FC<IProductCart> = ({
   count,
-  desc,
+  about,
   discount,
   id,
   img,
   price,
-  title,
-}: ICartItemProps): JSX.Element => {
+  name,
+}: IProductCart): JSX.Element => {
+
   return (
-    <div className="bg-white border border-lineGray rounded-xl p-3">
+    <div className="bg-white border border-lineGray rounded-xl p-3 mb-5 w-[380px]">
       <div className="flex flex-row w-full">
-        <div className="cart_item-img__container">
-          <img width={"84"} height={"84"} src={pizza} alt="" />
+        <div className="cart_item-img__container w-20 h-20 mr-3">
+          <img
+            // width={"84"}
+            // height={"84"}
+            src={`http://localhost:4000${JSON.parse(img)[0]}`}
+            alt={`where_pizza${id}`}
+          />
         </div>
-        <div>
-          <div className="mb-1" >
-            <h3 className="cart_item-title font-semibold text-sm">{title}</h3>
+        <div className="w-[230px]" >
+          <div className="mb-1">
+            <h3 className="cart_item-title font-semibold text-sm">{name}</h3>
           </div>
-          <div className="my-1" >
-            <p className="cart_item-desc text-xs">{desc}</p>
+          <div className="my-1">
+            <p className="cart_item-desc text-xs">{"Традиционное тесто, 23 см"}</p>
           </div>
-          <div className="mt-2 flex flex-row justify-between w-full" >
-            <IncDecBtns />
+          <div className="mt-2 flex flex-row justify-between w-full">
+            <IncDecBtns count={count} />
             <div className="cart_item-price__container">
-              <span className="font-semibold text-sm text-primery">{price} ₽</span>
+              <span className="font-semibold text-sm text-primery">
+                {price} ₽
+              </span>
             </div>
           </div>
         </div>

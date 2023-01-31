@@ -31,7 +31,7 @@ const Product = ({
           <div className="product__img-container flex items-center justify-center  ">
             <img
               className="product__img-img rounded-3xl"
-              src={`http://localhost:4000${JSON.parse(img)[0]}`}
+              src={`http://192.168.0.103:4000${JSON.parse(img)[0]}`}
               alt={`where_pizza${id}`}
             />
           </div>
@@ -57,7 +57,7 @@ const Product = ({
                   onClick={() => {
                     let count = 1;
                     dispatch(
-                      addProductToCartAC({ id, discount, price, count })
+                      addProductToCartAC({ id, name, img, about, discount, price, count })
                     );
                   }}
                   txt="Выбрать"

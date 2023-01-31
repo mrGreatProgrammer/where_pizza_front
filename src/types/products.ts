@@ -28,4 +28,5 @@ export interface IOrderItemProps {
   orderStatus: string;
   orderPayed: string;
   orderDeliveryAddress: string;
+  orderTotalCount: number;
 }

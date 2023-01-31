@@ -2,7 +2,7 @@ import { Pagination } from "antd";
 import React from "react";
 import OrderItem from "./OrderItem/OrderItem";
 
-const OrdersHistory = () => {
+const OrdersHistory = ({ orders, totalPag }: any) => {
   return (
     <div>
       <div>
@@ -15,12 +15,33 @@ const OrdersHistory = () => {
           orderStatus={"Обрабатывается"}
           orderPayed={"Картой"}
           orderSumPrice={399}
+          orderTotalCount={1}
         />
+        {orders ? (
+          //@ts-ignore
+          orders.map((o) => (
+            <OrderItem
+              key={o.id}
+              orderNumber={o.id}
+              orderDate={o.createdAt}
+              orderDeliveryAddress={
+                "ул. Львовская 48/2, офис 301, 2 этаж, домофон 4801#"
+              }
+              orderStatus={"Обрабатывается"}
+              orderPayed={"Картой"}
+              orderSumPrice={o.totalPrice}
+              orderTotalCount={o.totalCount}
+            />
+          ))
+        ) : (
+          <div className="orderHistory__empty">empty</div>
+        )}
       </div>
-      <div className="my-8 flex justify-center" >
+      <div className="my-8 flex justify-center">
         <Pagination
           defaultCurrent={1}
-          total={15}
+          // total={15}
+          total={totalPag}
           hideOnSinglePage
           pageSize={5}
         />

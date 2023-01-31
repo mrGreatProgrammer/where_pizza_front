@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { IProductCart } from "../types/cart";
+
+import { message } from "antd";
+
 // import { RootState } from "../store";
 // import type { RootState } from "../../app/store";
+// import {IProduct} from '../types/products'
 
-interface IProductCart {
-  id?: string | number;
-  price: number;
-  discount: number;
-  count: number;
-}
+// interface IProductCart extends IProduct {
+//   count: number;
+// }
 
 // Define a type for the slice state
 interface CartState {
@@ -29,17 +31,10 @@ export const cartSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    // toggleBurgerMenuAC(state, action:PayloadAction<boolean>){
-    //   state.burgerOpened=action.payload;
-    // }
     addProductToCartAC(state, action: PayloadAction<IProductCart>) {
-      // state.products.push(action.payload);
-      // state.products = [...state.products, action.payload];
       if (state.products.length > 0) {
         console.log("afdfaff\n -------", state.products.length);
-        // state.products.find(e=>e.id===action.payload.id);
         //@ts-ignore
-        // state.products.some((e) => e.id === action.payload.id)? state.products.find(e=>e.id===action.payload.id)?.count++:state.products.push(action.payload) ;
 
         state.products.find((e) => e.id === action.payload.id)
           ? //@ts-ignore
@@ -52,36 +47,15 @@ export const cartSlice = createSlice({
             }))
           : //@ts-ignore
             state.products.push(action.payload);
-        // for (let i = 0; i < state.products.length; i++) {
-        //   const element = state.products[i];
-        //   if (
-        //     state.products.find((e) => e.id === action.payload.id) &&
-        //     element.id === action.payload.id
-        //   ) {
-        //     element.count = element.count + 1;
-        //     console.log(
-        //       "afdfaff\n +++++++++",
-        //       state.products.length,
-        //       "\nproductId",
-        //       action.payload.id,
-        //       "\nboolean",
-        //       state.products.find((e) => e.id === action.payload.id)
-        //     );
-        //     break;
-        //   } else {
-        //     //@ts-ignore
-        //     state.products.push(action.payload);
-        //     console.log(
-        //       "afdfaff\n ********",
-        //       state.products.length,
-        //       "\nproductId",
-        //       action.payload.id,
-        //       "\nboolean",
-        //       state.products.find((e) => e.id === action.payload.id)
-        //     );
-        //     break;
-        //   }
-        // }
+
+        //@ts-ignore
+        state.totalCountProducts = state.products.reduce((a, b) => {
+          return a + b.count;
+        }, 0);
+        //@ts-ignore
+        state.totalPrice = state.products.reduce((a, b) => {
+          return a + b.price * b.count;
+        }, 0);
       } else {
         console.log(
           "afdfaff\n state.products.length",
@@ -92,6 +66,14 @@ export const cartSlice = createSlice({
         //@ts-ignore
         state.products.push(action.payload);
       }
+      message["open"]({
+        type: "success",
+        content: "Товар добавлен в корзину",
+        className: "message__added_to_cart",
+        style: {
+          marginTop: "8vh",
+        },
+      });
     },
   },
 });
@@ -102,6 +84,7 @@ export const {
 } = cartSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-// export const selectCount = (state: RootState) => state.counter.value;
+// export const selectCount = (state: RootStimport { IProduct } from './../types/products';
+// ate) => state.counter.value;
 
 export default cartSlice.reducer;
