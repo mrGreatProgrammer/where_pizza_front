@@ -9,7 +9,7 @@ const BtnChooseProduct: React.FC<BtnChooseProductPropsType> = ({
   return (
     <button
       onClick={onClick}
-      className="bg-primery px-8 py-[13px] text-white text-base rounded-md"
+      className="bg-primery px-8 py-[13px] text-white text-base rounded-md active:bg-secondery"
     >
       {txt}
     </button>

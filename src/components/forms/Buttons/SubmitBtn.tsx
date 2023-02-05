@@ -14,7 +14,7 @@ const SubmitBtn = ({
       <button
         onClick={onClick}
         disabled={disabled || loading}
-        className={`submit_btn bg-primery disabled:bg-lightPrimery text-sm md:text-base text-white min-width-[178px] max-w-[320px] w-full min-h-[44px] rounded-md ${className}`}
+        className={`active:bg-secondery submit_btn bg-primery disabled:bg-lightPrimery text-sm md:text-base text-white min-width-[178px] max-w-[320px] w-full min-h-[44px] rounded-md ${className}`}
       >
         {loading ? <Spinner /> : txt}
       </button>

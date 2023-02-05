@@ -12,6 +12,7 @@ import UserSettings from "./pages/UserProfile/UserSettings";
 import { useAppSelector } from "./store/store";
 import UserHistoryOrders from "./pages/UserProfile/UserHistoryOrders";
 import RequireAuth from "./hoc/RequireAuth";
+import MakeOrderPage from "./pages/Orders/MakeOrderPage";
 
 function App() {
   const { user } = useAppSelector((state) => state.userSlice);
@@ -40,7 +41,7 @@ function App() {
             }
           >
             <Route
-            index
+              index
               // path="/user/profile/settings"
               element={
                 <RequireAuth>
@@ -57,6 +58,15 @@ function App() {
               }
             ></Route>
           </Route>
+
+          <Route
+            path="/orders"
+            element={
+              <RequireAuth>
+                <MakeOrderPage />
+              </RequireAuth>
+            }
+          ></Route>
 
           <Route path="/auth/register" element={<Register />}></Route>
           <Route path="/auth/login" element={<Login />}></Route>

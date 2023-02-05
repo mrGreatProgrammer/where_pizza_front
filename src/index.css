@@ -31,3 +31,9 @@ main{
   margin-top: 135px;
 }
 
+:where(.css-dev-only-do-not-override-j1xh61).ant-btn-primary {
+  color: #fff;
+  background-color: #ff7010;
+  box-shadow: none;
+}
+

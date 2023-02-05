@@ -12,6 +12,7 @@ module.exports = {
         red: "#E23535",
         lightPrimery: "#FFEEE2",
         green: "#24D17E",
+        secondery: "#FF1203"
       },
       boxShadow: {
         gtr: "10px 35px 60px 15px #000000",
