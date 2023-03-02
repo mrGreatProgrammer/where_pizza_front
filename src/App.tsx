@@ -12,6 +12,7 @@ import UserSettings from "./pages/UserProfile/UserSettings";
 import { useAppSelector } from "./store/store";
 import UserHistoryOrders from "./pages/UserProfile/UserHistoryOrders";
 import RequireAuth from "./hoc/RequireAuth";
+//@ts-ignore
 import MakeOrderPage from "./pages/Orders/MakeOrderPage";
 
 function App() {
