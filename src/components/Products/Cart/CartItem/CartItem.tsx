@@ -32,7 +32,7 @@ const CartItem: React.FC<IProductCart> = ({
             <p className="cart_item-desc text-xs">{"Традиционное тесто, 23 см"}</p>
           </div>
           <div className="mt-2 flex flex-row justify-between w-full">
-            <IncDecBtns count={count} />
+            <IncDecBtns productId={id} count={count} />
             <div className="cart_item-price__container">
               <span className="font-semibold text-sm text-primery">
                 {price} ₽

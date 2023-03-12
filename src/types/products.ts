@@ -4,6 +4,14 @@ type productImage = {
   altTxt: string;
 };
 
+export interface IngredientType {
+  createdAt?: any;
+  id: number;
+  name: string;
+  price: number;
+  updatedAt?: any;
+}
+
 export interface IProduct {
   id?: number | string;
   productLabelTxt?: string;
@@ -12,6 +20,10 @@ export interface IProduct {
   about: string[];
   price: number;
   discount: number;
+  ingredients?: IngredientType[];
+  createdAt?: any;
+  updatedAt?: any;
+  productsGroupId?: any;
 }
 
 export interface IProductsGroupProps {

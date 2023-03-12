@@ -1,7 +1,7 @@
 import { Select } from "antd";
 import React from "react";
 
-const SelfDeliveryForm = () => {
+const SelfDeliveryForm = ({ errors, register }:any) => {
   return (
     <div className="w-full my-4">
       <Select

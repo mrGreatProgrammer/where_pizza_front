@@ -52,3 +52,12 @@
 .message__added_to_cart{
   
 }
+
+.incdecBtn{
+  &:active{
+    box-shadow: inset #FF400388 0px 1px 3px;
+  }
+  &:disabled{
+    background: #e3e3e3;
+  }
+}

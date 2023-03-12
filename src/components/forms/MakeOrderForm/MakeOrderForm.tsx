@@ -1,4 +1,4 @@
-import { DatePicker, Radio, Segmented } from "antd";
+import { DatePicker, InputNumber, Radio, Segmented } from "antd";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Input from "../Input/Input";
@@ -23,8 +23,9 @@ const disabledDate: RangePickerProps["disabledDate"] = (current) => {
   return current && current < dayjs().endOf("day");
 };
 const disabledDateTime = () => ({
-  disabledHours: () => range(0, 24).splice(4, 20),
-  disabledMinutes: () => range(30, 60),
+  // disabledHours: () => range(4, 24).splice(1, 4),
+  disabledHours: () => range(7, 24).splice(1, 9),
+  disabledMinutes: () => range(60, 60),
   disabledSeconds: () => [55, 56],
 });
 
@@ -41,9 +42,9 @@ const MakeOrderForm = () => {
     (state) => state.cartSlice
   );
   const [valuePay, setValuePay] = React.useState("");
-  const [valueChane, setValueChange] = React.useState("");
+  const [valueChane, setValueChange] = React.useState();
 
-  const [deliveryMode, setDeliveryMode] = React.useState(1);
+  const [deliveryMode, setDeliveryMode] = React.useState(true);
 
   const onChangeDeliveryMode = (e: RadioChangeEvent) => {
     console.log("radio checked", e.target.value);
@@ -58,6 +59,10 @@ const MakeOrderForm = () => {
     console.log("radio checked", e.target.value);
     setValueChange(e.target.value);
   };
+
+  function onSubmit(data:any) {
+    console.log(data);
+  }
 
   return (
     <div>
@@ -172,7 +177,7 @@ const MakeOrderForm = () => {
             {deliveryOption === "delivery" ? (
               <DeliveryForm errors={errors} register={register} />
             ) : (
-              <SelfDeliveryForm />
+              <SelfDeliveryForm errors={errors} register={register} />
             )}
           </div>
           <div>
@@ -181,17 +186,17 @@ const MakeOrderForm = () => {
             </h5>
             <div>
               <Radio.Group onChange={onChangeDeliveryMode} value={deliveryMode}>
-                <Radio value={1}>Как можно скорее</Radio>
-                <Radio value={2}>По времени</Radio>
+                <Radio value={true}>Как можно скорее</Radio>
+                <Radio value={false}>По времени</Radio>
               </Radio.Group>
-              {deliveryMode === 2 && (
+              {deliveryMode === false && (
                 // <div>
-                  <DatePicker
-                    format="YYYY-MM-DD HH:mm:ss"
-                    disabledDate={disabledDate}
-                    disabledTime={disabledDateTime}
-                    showTime={{ defaultValue: dayjs("00:00:00", "HH:mm:ss") }}
-                  />
+                <DatePicker
+                  format="YYYY-MM-DD HH:mm:ss"
+                  disabledDate={disabledDate}
+                  disabledTime={disabledDateTime}
+                  showTime={{ defaultValue: dayjs("00:00:00", "HH:mm:ss") }}
+                />
                 // </div>
               )}
             </div>
@@ -219,11 +224,23 @@ const MakeOrderForm = () => {
             <h3 className="text-back font-semibold text-2xl mb-4">Сдача</h3>
           </div>
         </div>
-        <div>
-          <Radio.Group onChange={onChangeChange} value={valueChane}>
-            <Radio value={1}>Без сдачи</Radio>
-            <Radio value={2}>Сдача с</Radio>
-          </Radio.Group>
+        <div className="flex flex-row">
+          <div>
+            <Radio.Group onChange={onChangeChange} value={valueChane}>
+              <Radio value={false}>Без сдачи</Radio>
+              <Radio value={true}>Сдача с</Radio>
+            </Radio.Group>
+          </div>
+          <div>
+            {valueChane == true && (
+              <InputNumber
+                formatter={(value) =>
+                  `₽ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
+                }
+                parser={(value) => value!.replace(/\₽\s?|('*)/g, "")}
+              />
+            )}
+          </div>
         </div>
       </div>
       <div className="border-b border-lineGray py-5">
@@ -255,9 +272,7 @@ const MakeOrderForm = () => {
         <div className="w-44">
           <SubmitBtn
             className={""}
-            onClick={() => {
-              console.log("h");
-            }}
+            onClick={handleSubmit(onSubmit)}
             txt={"Оформить заказ"}
             disabled={false}
             loading={false}

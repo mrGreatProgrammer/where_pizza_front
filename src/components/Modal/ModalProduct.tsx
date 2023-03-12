@@ -7,15 +7,18 @@ import {
   productTagReciepCardData,
 } from "./../../fakeData/productsFake";
 import { Segmented, Modal } from "antd";
+import { IProduct } from "../../types/products";
+import IngredientsCardsHolder from "../ui/IngredientsCard/IngredientsCardsHolder";
 
 const img = fakeProducts[0].productImage;
 
 interface modalProps {
   setModalVisibility: any;
   modalVisibility: boolean;
+  product: IProduct;
 }
 
-const ModalProduct = ({ setModalVisibility, modalVisibility }: modalProps) => {
+const ModalProduct = ({ setModalVisibility, modalVisibility, product }: modalProps) => {
   const [dough, setDough] = React.useState<string | number>("Традиционное");
   const [pizzaSize, setPizzaSize] = React.useState<string | number>("20 см");
 
@@ -94,7 +97,9 @@ const ModalProduct = ({ setModalVisibility, modalVisibility }: modalProps) => {
                   />
                 </div>
               </div>
-              <div></div>
+              <div className="ingredients" >
+              <IngredientsCardsHolder ingredients={product.ingredients} />
+              </div>
             </div>
           </div>
         </div>

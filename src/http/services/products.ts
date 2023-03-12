@@ -21,6 +21,9 @@ export const productsApi = createApi({
     getAllProducts: builder.query({
       query: (page=1) => `/all?page=${page}`,
     }),
+    getProductsByGroup: builder.query({
+      query: (page=1) => `/products_by_group?page=${page}`,
+    }),
     getProductByName: builder.query({
       query: (name) => `product/${name}`,
     }),
@@ -32,4 +35,5 @@ export const productsApi = createApi({
 export const {
   useGetProductByNameQuery,
   useGetAllProductsQuery,
+  useGetProductsByGroupQuery
 } = productsApi;

@@ -75,12 +75,60 @@ export const cartSlice = createSlice({
         },
       });
     },
+    incremmentProductAC(state, action: PayloadAction<any>) {
+      state.products.map((e) => {
+        if (e.id === action.payload.id) {
+          return e.count++;
+        } else {
+          return e;
+        }
+      });
+      //@ts-ignore
+      state.totalCountProducts = state.products.reduce((a, b) => {
+        return a + b.count;
+      }, 0);
+      //@ts-ignore
+      state.totalPrice = state.products.reduce((a, b) => {
+        return a + b.price * b.count;
+      }, 0);
+    },
+    decremmentProductAC(state, action: PayloadAction<any>) {
+      state.products.map((e) => {
+        if (e.id === action.payload.id) {
+          return e.count--;
+        } else {
+          return e;
+        }
+      });
+      //@ts-ignore
+      state.totalCountProducts = state.products.reduce((a, b) => {
+        return a + b.count;
+      }, 0);
+      //@ts-ignore
+      state.totalPrice = state.products.reduce((a, b) => {
+        return a + b.price * b.count;
+      }, 0);
+    },
+    removeProductFromCartAC(state, action: PayloadAction<any>) {
+      state.products = state.products.filter((e) => e.id != action.payload);
+      //@ts-ignore
+      state.totalCountProducts = state.products.reduce((a, b) => {
+        return a + b.count;
+      }, 0);
+      //@ts-ignore
+      state.totalPrice = state.products.reduce((a, b) => {
+        return a + b.price * b.count;
+      }, 0);
+    },
   },
 });
 
 export const {
   //  toggleBurgerMenuAC
   addProductToCartAC,
+  decremmentProductAC,
+  incremmentProductAC,
+  removeProductFromCartAC,
 } = cartSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

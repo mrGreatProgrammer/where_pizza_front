@@ -38,4 +38,4 @@ export const ordersApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetOrderByNameQuery, useGetAllOrdersQuery } = ordersApi;
+export const { useGetOrderByNameQuery, useGetAllOrdersQuery, useAddOrderMutation } = ordersApi;

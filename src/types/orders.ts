@@ -1,3 +1,5 @@
+import { IProduct } from "./products";
+
 export interface IOrder {
   id: number | string;
   totalPrice: number;
@@ -21,14 +23,23 @@ export interface IMakeOrderForm {
   house?: string;
   porch?: string;
   floor?: string;
-  
+  apartment?: string;
   intercom?: string;
 
   restaurant?: string|number;
 
-  typePriperTheOrder: boolean;
-  timePriperTheOrder?: any;
+  fastPrepareTheOrder: boolean;
+  timePrepareTheOrder?: any;
+  
+  paymentType: number;
 
-  typePay: any;
+  withChange: boolean;
+  withChangeNum?: string;
+
+  comments?: string;
+
+  totalPrice: any;
+  
+  products: IProduct[] | any;
 
 }
