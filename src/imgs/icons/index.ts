@@ -20,6 +20,8 @@ import InfoIcon from "./InfoIcon";
 import CheeseIcon from "./CheeseIcon";
 import SendIcon from './SendIcon';
 import PencilIcon from './PencilIcon';
+import EyeIcon from './EyeIcon';
+import EyeSlashIcon from './EyeSlashIcon';
 
 export {
   AccounIcon,
@@ -44,4 +46,6 @@ export {
   FireIcon,
   InstagrammIcon,
   InfoIcon,
+  EyeIcon,
+  EyeSlashIcon
 };

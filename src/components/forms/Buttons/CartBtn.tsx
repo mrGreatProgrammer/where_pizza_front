@@ -13,7 +13,7 @@ const CartBtn = ({ price = 0 }): JSX.Element => {
     (state) => state.cartSlice
   );
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const showDrawer = () => {
     setOpen(true);
@@ -23,10 +23,9 @@ const CartBtn = ({ price = 0 }): JSX.Element => {
     setOpen(false);
   };
 
-  function onClickHandlerOrder(event:any) {
-    navigate('/orders')
+  function onClickHandlerOrder(event: any) {
+    navigate("/orders");
   }
-
 
   return (
     <div>
@@ -43,7 +42,7 @@ const CartBtn = ({ price = 0 }): JSX.Element => {
         </span>
       </button>
       <Drawer
-        title="Basic Drawer"
+        title="Ваш заказ"
         placement="right"
         width={"420"}
         onClose={onClose}

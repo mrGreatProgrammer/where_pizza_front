@@ -22,6 +22,8 @@ const ModalProduct = ({ setModalVisibility, modalVisibility, product }: modalPro
   const [dough, setDough] = React.useState<string | number>("Традиционное");
   const [pizzaSize, setPizzaSize] = React.useState<string | number>("20 см");
 
+  const [activeIngredients, setActiveIngredients] = React.useState<number[]>([])
+
   return (
     // <dialog className="z-10" open={modalVisibility} onClose={(e)=>{setModalVisibility(false);console.log(e)}} >
 
@@ -31,10 +33,12 @@ const ModalProduct = ({ setModalVisibility, modalVisibility, product }: modalPro
     //   } backdrop-blur-lg w-full h-screen fixed top-0 left-0 right-0 bottom-0 justify-center items-center z-10`}
     // >
     <Modal
+    width={850}
+    className=""
       open={modalVisibility}
       onCancel={() => setModalVisibility(false)}
       footer={[
-        <button onClick={() => setModalVisibility(false)}>cancle</button>,
+        <button onClick={() => setModalVisibility(false)}>Добавить в корзину</button>
       ]}
     >
       <div className="modal__extit_btn-container">
@@ -46,10 +50,10 @@ const ModalProduct = ({ setModalVisibility, modalVisibility, product }: modalPro
         <div className="relative">
           <ProductLabel productLabelTxt="NEW" />
           <div className="flex flex-row">
-            <div className="modal__img-container">
+            <div className="modal__img-container mr-8">
               <img
-                width={"450px"}
-                height={"450px"}
+                width={"650px"}
+                height={"650px"}
                 src={img.src}
                 alt={img.altTxt}
               />
@@ -80,7 +84,7 @@ const ModalProduct = ({ setModalVisibility, modalVisibility, product }: modalPro
                 </div>
               </div>
               <div>
-                <div>
+                <div className="my-2" >
                   <Segmented
                     block
                     options={["Традиционное", "Тонкое"]}
@@ -88,7 +92,7 @@ const ModalProduct = ({ setModalVisibility, modalVisibility, product }: modalPro
                     onChange={setDough}
                   />
                 </div>
-                <div>
+                <div className="my-2 mb-7" >
                   <Segmented
                     block
                     options={["20 см", "28 см", "33 см"]}
@@ -98,7 +102,7 @@ const ModalProduct = ({ setModalVisibility, modalVisibility, product }: modalPro
                 </div>
               </div>
               <div className="ingredients" >
-              <IngredientsCardsHolder ingredients={product.ingredients} />
+              <IngredientsCardsHolder activeIngs={activeIngredients} onClick={(e:number)=>setActiveIngredients(prev=>[...prev, e])} ingredients={product.ingredients} />
               </div>
             </div>
           </div>

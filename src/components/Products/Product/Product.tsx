@@ -91,6 +91,7 @@ const Product = ({
                           discount,
                           price,
                           count,
+                          ingredients
                         })
                       );
                     }}

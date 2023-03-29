@@ -66,3 +66,14 @@ export const logInApi = createAsyncThunk(
     }
   }
 );
+
+export const editProfile = createAsyncThunk(
+  "user/auth/profile/edit",
+  async (formData, thankApi) => {
+    try {
+      const res = await axios.patch("/auth/profile", formData);
+    } catch (error) {
+      return thankApi.rejectWithValue("err");
+    }
+  }
+);

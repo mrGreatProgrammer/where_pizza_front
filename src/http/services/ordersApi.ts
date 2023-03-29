@@ -7,7 +7,7 @@ import { IOrder } from "../../types/orders";
 export const ordersApi = createApi({
   reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api/order/",
+    baseUrl: "http://localhost:4000/api/order",
     prepareHeaders: (headers, { getState }) => {
       // By default, if we have a token in the store, let's use that for authenticated requests
       const token = (getState() as RootState).userSlice.token;

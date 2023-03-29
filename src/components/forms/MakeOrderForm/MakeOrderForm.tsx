@@ -1,6 +1,6 @@
-import { DatePicker, InputNumber, Radio, Segmented } from "antd";
+import { DatePicker, Form, InputNumber, Radio, Segmented } from "antd";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import Input from "../Input/Input";
 import { RadioChangeEvent, Input as Inp } from "antd";
 import { useAppSelector } from "../../../store/store";
@@ -9,6 +9,10 @@ import DeliveryForm from "./DeliveryForm/DeliveryForm";
 import SelfDeliveryForm from "./DeliveryForm/SelfDeliveryForm";
 import dayjs from "dayjs";
 import { RangePickerProps } from "antd/es/date-picker";
+import { useAddOrderMutation } from "../../../http/services/ordersApi";
+import { MaskedInput } from "antd-mask-input";
+import { hasErrorClass } from "../../../utils/errHandler";
+import showNotification from "../../../utils/showNotification";
 
 const range = (start: number, end: number) => {
   const result = [];
@@ -34,11 +38,14 @@ const MakeOrderForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm({ mode: "onChange" });
   const [deliveryOption, setDeliveryOption] = React.useState<string | number>(
-    "delivery"
+    1
   );
-  const { totalPrice, totalCountProducts } = useAppSelector(
+  const { user } = useAppSelector((state) => state.userSlice);
+  const [addOrder, { isError, isLoading, isSuccess }] = useAddOrderMutation();
+  const { totalPrice, totalCountProducts, products } = useAppSelector(
     (state) => state.cartSlice
   );
   const [valuePay, setValuePay] = React.useState("");
@@ -60,9 +67,40 @@ const MakeOrderForm = () => {
     setValueChange(e.target.value);
   };
 
-  function onSubmit(data:any) {
+  function onSubmit(data: any) {
     console.log(data);
+
+    const dataReq = {
+      totalPrice,
+      totalCount:totalCountProducts,
+      products,
+      userFullName: data?.userFullName? user?.fullName:data?.userFullName,
+      phoneNumber: data?.phoneNum?user?.tel:data.phoneNum,
+      email:data.email,
+      deliveryMode,
+      street:data?.street,
+      house: data?.house,
+      proch: data?.porch,
+      floor: data?.floor,
+      apartment: data?.apartment,
+      intercom: data?.intercom,
+      restaurant: data?.restaurant,
+      fastPrepareTheOrder: deliveryOption,
+      timePrepareTheOrder: dayjs(data?.timePrepareTheOrder).format("YYYY-MM-DD HH:mm:ss"),
+      paymentType: valuePay,
+      withChange: valueChane,
+      withChangeNum: data?.tips,
+      userComments: data?.comment,
+    }
+
+    console.log("------\n------\n------\n------\n----->", dataReq)
+
+    addOrder(dataReq);
   }
+
+  React.useEffect(()=>{
+    isSuccess?showNotification("success","Заказ принят","ваш заказ принят"):console.log("")
+  },[isSuccess])
 
   return (
     <div>
@@ -79,8 +117,8 @@ const MakeOrderForm = () => {
                   message: "Обязательное поле",
                 },
                 minLength: {
-                  value: 6,
-                  message: "Минимум 8 символов",
+                  value: 3,
+                  message: "Минимум 3 символов",
                 },
                 maxLength: {
                   value: 32,
@@ -89,12 +127,29 @@ const MakeOrderForm = () => {
               })}
               inpName={"userFullName"}
               inpType={"text"}
-              defaultValue={""}
+              defaultValue={user?.fullName}
               errMsg={errors.userFullName?.message}
               label={"Имя*"}
             />
           </div>
           <div>
+            {/* <Controller
+              name="phoneNum"
+              control={control}
+              render={({ field }) => (
+                <Form.Item
+                  label={<>Телефони мобилӣ:</>}
+                  {...hasErrorClass("phoneNum", errors)}
+                >
+                  <MaskedInput
+                    {...field}
+                    mask={"+(992) 00-000-00-00"}
+                    // mask={/^\d{3}-\d{3}-\d{4}$/}
+                  />
+                </Form.Item>
+              )}
+            /> */}
+
             <Input
               className={""}
               elId={""}
@@ -105,7 +160,7 @@ const MakeOrderForm = () => {
                 },
                 minLength: {
                   value: 6,
-                  message: "Минимум 8 символов",
+                  message: "Минимум 7 символов",
                 },
                 maxLength: {
                   value: 32,
@@ -114,7 +169,7 @@ const MakeOrderForm = () => {
               })}
               inpName={"phoneNum"}
               inpType={"tel"}
-              defaultValue={""}
+              defaultValue={user?.tel}
               errMsg={errors.phoneNum?.message}
               label={"Номер телефона*"}
             />
@@ -136,6 +191,10 @@ const MakeOrderForm = () => {
                   value: 32,
                   message: "Максимум 32 сивола",
                 },
+                pattern: {
+                  message: "Майдон бояд формати email дошта бошад",
+                  value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+                },
               })}
               inpName={"email"}
               inpType={"mail"}
@@ -156,11 +215,11 @@ const MakeOrderForm = () => {
               options={[
                 {
                   label: <div>Доставка</div>,
-                  value: "delivery",
+                  value:1,
                 },
                 {
                   label: <div>Самовывоз</div>,
-                  value: "pickup",
+                  value: 2,
                 },
               ]}
               value={deliveryOption}
@@ -174,10 +233,14 @@ const MakeOrderForm = () => {
         </div>
         <div>
           <div>
-            {deliveryOption === "delivery" ? (
+            {deliveryOption === 1 ? (
               <DeliveryForm errors={errors} register={register} />
             ) : (
-              <SelfDeliveryForm errors={errors} register={register} />
+              <SelfDeliveryForm
+                errors={errors}
+                register={register}
+                control={control}
+              />
             )}
           </div>
           <div>
@@ -185,17 +248,29 @@ const MakeOrderForm = () => {
               Когда выполнить заказ?
             </h5>
             <div>
+              {/* <Controller name=""
+              render={({field})=> */}
+
               <Radio.Group onChange={onChangeDeliveryMode} value={deliveryMode}>
                 <Radio value={true}>Как можно скорее</Radio>
                 <Radio value={false}>По времени</Radio>
               </Radio.Group>
+              {/* // }
+              //   /> */}
               {deliveryMode === false && (
                 // <div>
-                <DatePicker
-                  format="YYYY-MM-DD HH:mm:ss"
-                  disabledDate={disabledDate}
-                  disabledTime={disabledDateTime}
-                  showTime={{ defaultValue: dayjs("00:00:00", "HH:mm:ss") }}
+                <Controller
+                  control={control}
+                  name="timePrepareTheOrder"
+                  render={({ field }) => (
+                    <DatePicker
+                      {...field}
+                      format="YYYY-MM-DD HH:mm:ss"
+                      disabledDate={disabledDate}
+                      disabledTime={disabledDateTime}
+                      showTime={{ defaultValue: dayjs("00:00:00", "HH:mm:ss") }}
+                    />
+                  )}
                 />
                 // </div>
               )}
@@ -233,11 +308,18 @@ const MakeOrderForm = () => {
           </div>
           <div>
             {valueChane == true && (
-              <InputNumber
-                formatter={(value) =>
-                  `₽ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
-                }
-                parser={(value) => value!.replace(/\₽\s?|('*)/g, "")}
+              <Controller
+                control={control}
+                name="tips"
+                render={({ field }) => (
+                  <InputNumber
+                    {...field}
+                    formatter={(value) =>
+                      `₽ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
+                    }
+                    parser={(value) => value!.replace(/\₽\s?|('*)/g, "")}
+                  />
+                )}
               />
             )}
           </div>
@@ -252,7 +334,11 @@ const MakeOrderForm = () => {
           </div>
         </div>
         <div>
-          <Inp.TextArea rows={8} placeholder="Есть уточнения?" />
+          <Controller
+          control={control}
+          name="comment"
+          render={({field})=><Inp.TextArea {...field} rows={8} placeholder="Есть уточнения?" />}
+          />
         </div>
       </div>
       <div className="flex flex-row justify-between items-center">

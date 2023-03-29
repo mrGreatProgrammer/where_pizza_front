@@ -44,14 +44,6 @@ const DeliveryForm = ({ errors, register }: DeliveryFormProps) => {
                 value: true,
                 message: "Обязательное поле",
               },
-              minLength: {
-                value: 6,
-                message: "Минимум 8 символов",
-              },
-              maxLength: {
-                value: 32,
-                message: "Максимум 32 сивола",
-              },
             })}
             inpName={"house"}
             inpType={"text"}
@@ -68,14 +60,6 @@ const DeliveryForm = ({ errors, register }: DeliveryFormProps) => {
               required: {
                 value: true,
                 message: "Обязательное поле",
-              },
-              minLength: {
-                value: 6,
-                message: "Минимум 8 символов",
-              },
-              maxLength: {
-                value: 32,
-                message: "Максимум 32 сивола",
               },
             })}
             inpName={"porch"}
@@ -94,14 +78,6 @@ const DeliveryForm = ({ errors, register }: DeliveryFormProps) => {
                 value: true,
                 message: "Обязательное поле",
               },
-              minLength: {
-                value: 6,
-                message: "Минимум 8 символов",
-              },
-              maxLength: {
-                value: 32,
-                message: "Максимум 32 сивола",
-              },
             })}
             inpName={"floor"}
             inpType={"text"}
@@ -114,18 +90,10 @@ const DeliveryForm = ({ errors, register }: DeliveryFormProps) => {
           <Input
             className={""}
             elId={""}
-            formController={register("intercom", {
+            formController={register("apartment", {
               required: {
                 value: true,
                 message: "Обязательное поле",
-              },
-              minLength: {
-                value: 6,
-                message: "Минимум 8 символов",
-              },
-              maxLength: {
-                value: 32,
-                message: "Максимум 32 сивола",
               },
             })}
             inpName={"intercom"}
@@ -143,14 +111,6 @@ const DeliveryForm = ({ errors, register }: DeliveryFormProps) => {
               required: {
                 value: true,
                 message: "Обязательное поле",
-              },
-              minLength: {
-                value: 6,
-                message: "Минимум 8 символов",
-              },
-              maxLength: {
-                value: 32,
-                message: "Максимум 32 сивола",
               },
             })}
             inpName={"intercom"}

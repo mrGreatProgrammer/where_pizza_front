@@ -26,15 +26,31 @@ const MainPage = () => {
       <CheckDeliveryAddress />
 
       {data?.length ? (
-        data?.map((e:any)=><GroupedProducts
-          title={e.title}
-          products={e?.products}
-          loading={isLoading}
-          err={isError ? "error" : ""}
-        />)
+        data?.map((e: any) =>
+          e?.products.length ? (
+            <GroupedProducts
+              title={e.title}
+              products={e?.products}
+              loading={isLoading}
+              err={isError ? "error" : ""}
+            />
+          ) : (
+            <></>
+          )
+        )
       ) : (
-         <div className="my-14" >
-        <Empty  imageStyle={{height: "300px", display: "flex", justifyContent: "center"}} image={pizzaEmpty} description={<p className="my-3 text-lg font-medium" >Продукты не найдены</p>} />
+        <div className="my-14">
+          <Empty
+            imageStyle={{
+              height: "300px",
+              display: "flex",
+              justifyContent: "center",
+            }}
+            image={pizzaEmpty}
+            description={
+              <p className="my-3 text-lg font-medium">Продукты не найдены</p>
+            }
+          />
         </div>
       )}
       <SeoTextContainer />

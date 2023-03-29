@@ -1,6 +1,8 @@
+import { Empty } from "antd";
 import React from "react";
 import { useAppSelector } from "../../../store/store";
 import CartItem from "../../Products/Cart/CartItem/CartItem";
+import pizzaEmpty from "../../../imgs/empty-pizza-box.png";
 
 const CartDrawer = () => {
   const { products } = useAppSelector((state) => state.cartSlice);
@@ -9,7 +11,7 @@ const CartDrawer = () => {
     <div>
       <div>
         <div className="cart__drawer-products__cotnainer">
-          {products ? (
+          {products?.length ? (
             products.map((e) => (
               <CartItem
                 key={e.id}
@@ -23,7 +25,21 @@ const CartDrawer = () => {
               />
             ))
           ) : (
-            <div className="cart__drawer-products--empty">empty</div>
+            <div className="mt-28">
+              <Empty
+                imageStyle={{
+                  height: "200px",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                image={pizzaEmpty}
+                description={
+                  <p className="my-3 text-lg font-medium">
+                    Продукты не найдены
+                  </p>
+                }
+              />
+            </div>
           )}
         </div>
       </div>

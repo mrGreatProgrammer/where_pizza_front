@@ -1,19 +1,25 @@
 import { Select } from "antd";
 import React from "react";
+import { Controller } from "react-hook-form";
 
-const SelfDeliveryForm = ({ errors, register }:any) => {
+const SelfDeliveryForm = ({ errors, register, control }:any) => {
   return (
     <div className="w-full my-4">
-      <Select
+      <Controller 
+      control={control}
+      name={"restaurant"}
+      render={({field})=><Select
+      {...field}
       size="large"
         placeholder={"Выберите ресторан"}
         loading={false}
         className={"w-full"}
       >
-        <Select.Option value={"1"} label={"1"}>
-          {"1"}
+        <Select.Option value={"1"} label={"ул Айни"}>
+          {"ул Айни"}
         </Select.Option>
-      </Select>
+      </Select>}
+      />
     </div>
   );
 };
