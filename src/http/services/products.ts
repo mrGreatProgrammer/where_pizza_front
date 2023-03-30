@@ -7,7 +7,7 @@ import { IProduct } from "../../types/products";
 export const productsApi = createApi({
   reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://192.168.0.103:4000/api/products/",
+    baseUrl: `${process.env.REACT_APP_API_URL}/api/products/`,
     // prepareHeaders: (headers, { getState }) => {
     //   // By default, if we have a token in the store, let's use that for authenticated requests
     //   const token = (getState() as RootState).appSlice.token;
@@ -19,10 +19,10 @@ export const productsApi = createApi({
   }),
   endpoints: (builder) => ({
     getAllProducts: builder.query({
-      query: (page=1) => `/all?page=${page}`,
+      query: (page = 1) => `/all?page=${page}`,
     }),
     getProductsByGroup: builder.query({
-      query: (page=1) => `/products_by_group?page=${page}`,
+      query: (page = 1) => `/products_by_group?page=${page}`,
     }),
     getProductByName: builder.query({
       query: (name) => `product/${name}`,
@@ -35,5 +35,5 @@ export const productsApi = createApi({
 export const {
   useGetProductByNameQuery,
   useGetAllProductsQuery,
-  useGetProductsByGroupQuery
+  useGetProductsByGroupQuery,
 } = productsApi;

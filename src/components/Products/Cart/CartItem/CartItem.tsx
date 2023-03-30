@@ -20,7 +20,7 @@ const CartItem: React.FC<IProductCart> = ({
           <img
             // width={"84"}
             // height={"84"}
-            src={`http://localhost:4000${JSON.parse(img)[0]}`}
+            src={`${process.env.REACT_APP_API_URL}${JSON.parse(img)[0]}`}
             alt={`where_pizza${id}`}
           />
         </div>

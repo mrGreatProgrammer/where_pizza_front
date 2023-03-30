@@ -44,4 +44,5 @@ export interface IUserData {
   role: string;
   email: string;
   birthDate: any;
+  address?: any;
 }

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logInApi, registerApi } from "../../http/user/user";
+import { editProfile, logInApi, registerApi } from "../../http/user/user";
 import { IUserData } from "../../types/forms";
 import type { PayloadAction } from "@reduxjs/toolkit";
 // import { IProduct } from "../../types/products";
@@ -78,6 +78,19 @@ export const userSlice = createSlice({
       state.token = action.payload.token;
       state.user = action.payload.user;
     },
+    [editProfile.pending.type]: (state, action) => {
+      state.loading = true;
+      state.error = "";
+    },
+    [editProfile.rejected.type]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [editProfile.fulfilled.type]: (state, action: PayloadAction<registerApiReturnType>) => {
+      state.loading = false;
+      state.error = "";
+    },
+    
   },
 });
 

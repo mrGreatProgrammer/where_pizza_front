@@ -47,7 +47,7 @@ const Product = ({
             {inView ? (
               <img
                 className="product__img-img rounded-3xl"
-                src={`http://192.168.0.103:4000${JSON.parse(img)[0]}`}
+                src={`${process.env.REACT_APP_API_URL}${JSON.parse(img)[0]}`}
                 alt={`where_pizza${id}`}
               />
             ) : (

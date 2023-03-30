@@ -7,7 +7,7 @@ import { IOrder } from "../../types/orders";
 export const ordersApi = createApi({
   reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api/order",
+    baseUrl: `${process.env.REACT_APP_API_URL}/order`,
     prepareHeaders: (headers, { getState }) => {
       // By default, if we have a token in the store, let's use that for authenticated requests
       const token = (getState() as RootState).userSlice.token;
@@ -25,17 +25,21 @@ export const ordersApi = createApi({
       query: (name) => `order/${name}`,
     }),
     addOrder: builder.mutation({
-      query: (data)=> {
+      query: (data) => {
         return {
-          url: '/',
-          method: 'POST',
-          body: data
-        }
-      }
-    })
+          url: "/",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetOrderByNameQuery, useGetAllOrdersQuery, useAddOrderMutation } = ordersApi;
+export const {
+  useGetOrderByNameQuery,
+  useGetAllOrdersQuery,
+  useAddOrderMutation,
+} = ordersApi;

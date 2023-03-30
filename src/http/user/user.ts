@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { RootState } from "../../store/store";
 import { ILoginForm, IRegisterForm } from "../../types/forms";
 
 export const registerApi = createAsyncThunk(
@@ -8,7 +9,7 @@ export const registerApi = createAsyncThunk(
     try {
       console.log({ ...formData, role: "USER" });
       const { status, data } = await axios.post(
-        "http://192.168.0.103:4000/api/user/registration",
+        `${process.env.REACT_APP_API_URL}/api/user/registration`,
         {
           ...formData,
           role: "USER",
@@ -39,7 +40,7 @@ export const logInApi = createAsyncThunk(
     try {
       console.log({ ...formData, role: "USER" });
       const res = await axios.post(
-        "http://192.168.0.103:4000/api/user/login",
+        `${process.env.REACT_APP_API_URL}/api/user/login`,
         formData
       );
 
@@ -71,7 +72,16 @@ export const editProfile = createAsyncThunk(
   "user/auth/profile/edit",
   async (formData, thankApi) => {
     try {
-      const res = await axios.patch("/auth/profile", formData);
+      const token = (thankApi.getState() as RootState).userSlice.token;
+      const res = await axios.patch(
+        `${process.env.REACT_APP_API_URL}/api/user/profile`,
+        formData,
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      );
+
+      return "done";
     } catch (error) {
       return thankApi.rejectWithValue("err");
     }
