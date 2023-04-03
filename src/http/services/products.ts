@@ -27,6 +27,9 @@ export const productsApi = createApi({
     getProductByName: builder.query({
       query: (name) => `product/${name}`,
     }),
+    getRecipeOfProducts: builder.query({
+      query: () => ({ url: "/recipe_of_products" }),
+    }),
   }),
 });
 
@@ -36,4 +39,5 @@ export const {
   useGetProductByNameQuery,
   useGetAllProductsQuery,
   useGetProductsByGroupQuery,
+  useGetRecipeOfProductsQuery,
 } = productsApi;

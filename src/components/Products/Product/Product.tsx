@@ -19,7 +19,7 @@ const Product = ({
   name,
   price,
   about,
-  ingredients
+  ingredients,
 }: IProduct): JSX.Element => {
   const [modalVisibility, setModalVisibility] = React.useState(false);
   const dispatch = useAppDispatch();
@@ -27,7 +27,7 @@ const Product = ({
     /* Optional options */
     threshold: 0.7,
     triggerOnce: true,
-    delay: 1
+    delay: 1,
   });
 
   function showModal() {}
@@ -91,7 +91,7 @@ const Product = ({
                           discount,
                           price,
                           count,
-                          ingredients
+                          ingredients,
                         })
                       );
                     }}
@@ -140,14 +140,15 @@ const Product = ({
       <ModalProduct
         setModalVisibility={setModalVisibility}
         modalVisibility={modalVisibility}
-        product={{ id,
+        product={{
+          id,
           discount,
           img,
           productLabelTxt,
           name,
           price,
           about,
-        ingredients
+          ingredients,
         }}
       />
     </>

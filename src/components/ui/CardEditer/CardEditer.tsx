@@ -1,16 +1,27 @@
 import React from "react";
 import { CrossIcon, PencilIcon } from "../../../imgs/icons";
 import SubmitBtn from "../../forms/Buttons/SubmitBtn";
+import { setEditerOpenedAC } from "../../../store/userSlice/userSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 
 type cardEditerProps = {
   title: string;
   onOk: any;
   children: JSX.Element;
   data?: JSX.Element;
+  isLoading: boolean;
 };
 
-const CardEditer = ({ title, onOk, children, data }: cardEditerProps) => {
-  const [opened, setOpened] = React.useState(false);
+const CardEditer = ({
+  title,
+  onOk,
+  children,
+  data,
+  isLoading,
+}: cardEditerProps) => {
+  // const [opened, setOpened] = React.useState(false);
+  const {editerOpened} = useAppSelector(state=>state.userSlice);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="max-w-[850px] py-6 px-8 border border-lineGray rounded-xl bg-white">
@@ -22,25 +33,28 @@ const CardEditer = ({ title, onOk, children, data }: cardEditerProps) => {
         </div>
         <div>
           <button
-            onClick={() => setOpened((prev) => !prev)}
+            onClick={() => dispatch(setEditerOpenedAC(!editerOpened))}
             className="flex flex-row items-center gap-x-2 editing__btn text-primery text-base"
           >
-            {opened ? <CrossIcon /> : <PencilIcon />}
-            {opened ? "Отмена" : "Изменить"}
+            {editerOpened ? <CrossIcon /> : <PencilIcon />}
+            {editerOpened ? "Отмена" : "Изменить"}
           </button>
         </div>
       </div>
       <div>
-        {opened ? (
+        {editerOpened ? (
           <div>
             <div>{children}</div>
             <div>
               <SubmitBtn
                 className={""}
-                onClick={() => onOk()}
+                onClick={() => {
+                  onOk();
+                  // setOpened(false);
+                }}
                 txt="Сохранить изменения"
-                disabled={false}
-                loading={false}
+                disabled={isLoading}
+                loading={isLoading}
               />
             </div>
           </div>

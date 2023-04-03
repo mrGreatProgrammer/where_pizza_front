@@ -1,16 +1,10 @@
 import React from "react";
-import { CrossIcon, FireIcon, InfoIcon } from "../../imgs/icons";
-import ProductLabel from "../ui/ProductLabel/ProductLabel";
-import ProductTagCard from "../ui/ProductTagCard/ProductTagCard";
-import {
-  fakeProducts,
-  productTagReciepCardData,
-} from "./../../fakeData/productsFake";
-import { Segmented, Modal } from "antd";
-import { IProduct } from "../../types/products";
+import { CrossIcon } from "../../imgs/icons";
+import { Modal } from "antd";
+import { IProduct, IngredientType } from "../../types/products";
 import IngredientsCardsHolder from "../ui/IngredientsCard/IngredientsCardsHolder";
-
-const img = fakeProducts[0].productImage;
+import { useGetRecipeOfProductsQuery } from "../../http/services/products";
+import ModalProductContent from "./ModalProductContent";
 
 interface modalProps {
   setModalVisibility: any;
@@ -18,99 +12,31 @@ interface modalProps {
   product: IProduct;
 }
 
-const ModalProduct = ({ setModalVisibility, modalVisibility, product }: modalProps) => {
-  const [dough, setDough] = React.useState<string | number>("Традиционное");
-  const [pizzaSize, setPizzaSize] = React.useState<string | number>("20 см");
-
-  const [activeIngredients, setActiveIngredients] = React.useState<number[]>([])
+const ModalProduct = ({
+  setModalVisibility,
+  modalVisibility,
+  product,
+}: modalProps) => {
+  const { data, isError, isLoading } = useGetRecipeOfProductsQuery(1);
 
   return (
-    // <dialog className="z-10" open={modalVisibility} onClose={(e)=>{setModalVisibility(false);console.log(e)}} >
-
-    // <div
-    //   className={`${
-    //     modalVisibility ? "flex" : "hidden"
-    //   } backdrop-blur-lg w-full h-screen fixed top-0 left-0 right-0 bottom-0 justify-center items-center z-10`}
-    // >
     <Modal
-    width={850}
-    className=""
+      closeIcon={<CrossIcon />}
+      destroyOnClose
+      width={870}
+      className=""
       open={modalVisibility}
       onCancel={() => setModalVisibility(false)}
-      footer={[
-        <button onClick={() => setModalVisibility(false)}>Добавить в корзину</button>
-      ]}
+      footer={[]}
     >
-      <div className="modal__extit_btn-container">
-        {/* <button className="exit__btn" onClick={() => setModalVisibility(false)}>
-          <CrossIcon />
-        </button> */}
-      </div>
-      <div className="bg-white modal__content-container max-w-[1070px] rounded-3xl">
-        <div className="relative">
-          <ProductLabel productLabelTxt="NEW" />
-          <div className="flex flex-row">
-            <div className="modal__img-container mr-8">
-              <img
-                width={"650px"}
-                height={"650px"}
-                src={img.src}
-                alt={img.altTxt}
-              />
-            </div>
-            <div>
-              <div>
-                <div>
-                  <FireIcon />
-                </div>
-                <div>
-                  <h4>Пепперони по-деревенски</h4>
-                </div>
-                <div>
-                  <InfoIcon />
-                </div>
-              </div>
-              <div></div>
-              <div>
-                <div>
-                  {/* {productTagReciepCardData.map((e) => (
-                    <ProductTagCard
-                    key={e.id}
-                    id={e.id}
-                    // icon={e.icon}
-                    title={e.title}
-                    />
-                  ))} */}
-                </div>
-              </div>
-              <div>
-                <div className="my-2" >
-                  <Segmented
-                    block
-                    options={["Традиционное", "Тонкое"]}
-                    value={dough}
-                    onChange={setDough}
-                  />
-                </div>
-                <div className="my-2 mb-7" >
-                  <Segmented
-                    block
-                    options={["20 см", "28 см", "33 см"]}
-                    value={pizzaSize}
-                    onChange={setPizzaSize}
-                  />
-                </div>
-              </div>
-              <div className="ingredients" >
-              <IngredientsCardsHolder activeIngs={activeIngredients} onClick={(e:number)=>setActiveIngredients(prev=>[...prev, e])} ingredients={product.ingredients} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ModalProductContent
+        data={data}
+        isLoading={isLoading}
+        isError={isError}
+        product={product}
+        setModalVisibility={setModalVisibility}
+      />
     </Modal>
-    // </div>
-    // </dialog>
   );
 };
 

@@ -7,19 +7,27 @@ interface IngredientsCardProps {
   ingredient: IngredientType;
   onClick: any;
   activeIngs: any;
+  onDisactive: any;
 }
 
 const IngredientsCard = ({
   ingredient,
   onClick,
   activeIngs,
+  onDisactive,
 }: IngredientsCardProps) => {
   return (
     <div
-      onClick={() => onClick(ingredient.id)}
-      className={`w-24 IngredientsCard border rounded-lg items-center flex flex-col shadow-sm transition-shadow hover:shadow hover:cursor-pointer ${activeIngs?.find(
-        (e:number) => ingredient.id === e
-      )?"border-secondery":""}`}
+      onClick={() =>
+        activeIngs?.find((e: number) => ingredient.id === e)
+          ? onDisactive(ingredient.id)
+          : onClick(ingredient.id)
+      }
+      className={`w-24 IngredientsCard border rounded-lg items-center flex flex-col shadow-sm transition-shadow hover:shadow hover:cursor-pointer ${
+        activeIngs?.find((e: number) => ingredient.id === e)
+          ? "border-secondery"
+          : ""
+      }`}
     >
       <div className="ingredientsCard__img_container">
         <img className="w-20" src={ingredientImg} alt={ingredient.name} />

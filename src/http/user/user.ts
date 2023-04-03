@@ -38,15 +38,10 @@ export const logInApi = createAsyncThunk(
   "user/auth/login",
   async (formData: ILoginForm, thankAPI) => {
     try {
-      console.log({ ...formData, role: "USER" });
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/user/login`,
         formData
       );
-
-      // console.log("res", res);
-
-      console.log("res.status", res.status);
 
       if (res.status === 200 && res.data) {
         return thankAPI.fulfillWithValue({
@@ -73,7 +68,7 @@ export const editProfile = createAsyncThunk(
   async (formData, thankApi) => {
     try {
       const token = (thankApi.getState() as RootState).userSlice.token;
-      const res = await axios.patch(
+      const res: any = await axios.patch(
         `${process.env.REACT_APP_API_URL}/api/user/profile`,
         formData,
         {
@@ -81,9 +76,11 @@ export const editProfile = createAsyncThunk(
         }
       );
 
-      return "done";
+      return thankApi.fulfillWithValue(res.data);
     } catch (error) {
       return thankApi.rejectWithValue("err");
     }
   }
 );
+
+

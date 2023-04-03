@@ -18,7 +18,7 @@ const disabledDateYear: RangePickerProps["disabledDate"] = (current) => {
 };
 
 const EditUserProfile = () => {
-  const { user } = useAppSelector((state) => state.userSlice);
+  const { user, loading } = useAppSelector((state) => state.userSlice);
   const disaptch = useAppDispatch();
 
   const {
@@ -32,12 +32,13 @@ const EditUserProfile = () => {
     console.log("onSave");
     console.log(data);
     //@ts-ignore
-    disaptch(editProfile(data))
+    disaptch(editProfile(data));
   }
 
   return (
     <div>
       <CardEditer
+      isLoading={loading}
         data={
           <div className="grid md:grid-cols-4 gap-y-4 md:gap-x-8">
             <TxtWithLabel label="Имя" txt={user?.fullName} required={true} />
@@ -46,13 +47,18 @@ const EditUserProfile = () => {
               txt={user?.tel}
               required={true}
             />
-            <TxtWithLabel label="Почта" txt={""} required={false} />
-            <TxtWithLabel label="Дата рождения" txt={""} required={false} />
-            <TxtWithLabel label="Адрес" txt={""} required={false} />
+            <TxtWithLabel label="Почта" txt={user?.email} required={false} />
+            <TxtWithLabel
+              label="Дата рождения"
+              txt={user?.birthDate}
+              required={false}
+            />
+            <TxtWithLabel label="Адрес" txt={user?.address} required={false} />
           </div>
         }
         title="Личные данные"
         onOk={handleSubmit(onSave)}
+
       >
         <div className="grid md:grid-cols-3 gap-y-4 md:gap-x-6">
           <div>
@@ -107,6 +113,10 @@ const EditUserProfile = () => {
                   <DatePicker
                     placeholder=""
                     {...field}
+                    defaultPickerValue={dayjs(
+                      `${dayjs().year() - 18}-01-01`,
+                      "YYYY-MM-DD"
+                    )}
                     // defaultPickerValue={dayjs(
                     //   `01-01-${dayjs().year() - 18}`,
                     //   "YYYY-MM-DD"
@@ -158,12 +168,13 @@ const EditUserProfile = () => {
           <div>
             <Input
               elId=""
-              formController={null}
+              // formController={null}
               inpName="address"
               className={""}
               defaultValue={user?.address}
               errMsg={""}
               label={"Адрес"}
+              formController={register("address")}
               inpType={"text"}
             />
           </div>
