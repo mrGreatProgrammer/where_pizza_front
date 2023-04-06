@@ -1,4 +1,3 @@
-import { Image } from "antd";
 import React from "react";
 import { IngredientType } from "../../../types/products";
 import ingredientImg from "../../../imgs/ingredient.png";
@@ -19,12 +18,12 @@ const IngredientsCard = ({
   return (
     <div
       onClick={() =>
-        activeIngs?.find((e: number) => ingredient.id === e)
-          ? onDisactive(ingredient.id)
-          : onClick(ingredient.id)
+        activeIngs?.find((e: IngredientType) => ingredient.id === e.id)
+          ? onDisactive(ingredient)
+          : onClick(ingredient)
       }
       className={`w-24 IngredientsCard border rounded-lg items-center flex flex-col shadow-sm transition-shadow hover:shadow hover:cursor-pointer ${
-        activeIngs?.find((e: number) => ingredient.id === e)
+        activeIngs?.find((e: IngredientType) => ingredient.id === e.id)
           ? "border-secondery"
           : ""
       }`}

@@ -31,7 +31,7 @@ const ModalProductContent = ({
   const [dough, setDough] = React.useState<string | number>("Традиционное");
   const [pizzaSize, setPizzaSize] = React.useState<string | number>("20 см");
   const dispatch = useAppDispatch();
-  const [activeIngredients, setActiveIngredients] = React.useState<number[]>(
+  const [activeIngredients, setActiveIngredients] = React.useState<IngredientType[]>(
     []
   );
 
@@ -58,15 +58,15 @@ const ModalProductContent = ({
               {/* </Carousel> */}
             </div>
             <div>
-              <div className="flex flex-row space-x-3 justify-between mt-10 items-center mb-5">
-                <div>
+              <div className="flex flex-row space-x-3 justify-start mt-10 items-center mb-5">
+                {/* <div>
                   <FireIcon />
-                </div>
+                </div> */}
                 <div>
                   <h4 className="text-xl font-medium">{product.name}</h4>
                 </div>
                 <div>
-                  <InfoIcon />
+                  {/* <InfoIcon /> */}
                 </div>
               </div>
               <div>
@@ -96,12 +96,12 @@ const ModalProductContent = ({
                   data={data}
                   isError={isError}
                   activeIngs={activeIngredients}
-                  onClick={(e: number) =>
+                  onClick={(e: IngredientType) =>
                     setActiveIngredients((prev) => [...prev, e])
                   }
-                  onDisactive={(e: number) =>
+                  onDisactive={(e: IngredientType) =>
                     setActiveIngredients(
-                      activeIngredients.filter((el) => el != e)
+                      activeIngredients.filter((el) => el.id != e.id)
                     )
                   }
                   ingredients={product.ingredients}
@@ -124,9 +124,42 @@ const ModalProductContent = ({
                 img: product.img,
                 about: product.about,
                 discount: product.discount,
-                price: product.price,
                 count,
                 ingredients: product.ingredients,
+                addedIngredients: activeIngredients,
+                // ingredients: product.ingredients?.concat(activeIngredients),
+                price: pizzaSize === "33 см"
+                ? Math.ceil(product?.price * 2.14) +
+                  (activeIngredients?.length
+                    ? data
+                        ?.filter(
+                          (e: IngredientType) =>
+                            activeIngredients.indexOf(e) !== -1
+                        )
+                        ?.map((e: IngredientType) => e.price)
+                        ?.reduce((a: number, b: number) => a + b)
+                    : 0)
+                : pizzaSize === "28 см"
+                ? Math.ceil(product?.price * 1.75) +
+                  (activeIngredients?.length
+                    ? data
+                        ?.filter(
+                          (e: IngredientType) =>
+                            activeIngredients.indexOf(e) !== -1
+                        )
+                        ?.map((e: IngredientType) => e.price)
+                        ?.reduce((a: number, b: number) => a + b)
+                    : 0)
+                : product?.price +
+                  (activeIngredients?.length
+                    ? data
+                        ?.filter(
+                          (e: IngredientType) =>
+                            activeIngredients.indexOf(e) !== -1
+                        )
+                        ?.map((e: IngredientType) => e.price)
+                        ?.reduce((a: number, b: number) => a + b)
+                    : 0),
               })
             );
           }}
@@ -137,7 +170,7 @@ const ModalProductContent = ({
                 ? data
                     ?.filter(
                       (e: IngredientType) =>
-                        activeIngredients.indexOf(e.id) !== -1
+                        activeIngredients.indexOf(e) !== -1
                     )
                     ?.map((e: IngredientType) => e.price)
                     ?.reduce((a: number, b: number) => a + b)
@@ -148,7 +181,7 @@ const ModalProductContent = ({
                 ? data
                     ?.filter(
                       (e: IngredientType) =>
-                        activeIngredients.indexOf(e.id) !== -1
+                        activeIngredients.indexOf(e) !== -1
                     )
                     ?.map((e: IngredientType) => e.price)
                     ?.reduce((a: number, b: number) => a + b)
@@ -158,7 +191,7 @@ const ModalProductContent = ({
                 ? data
                     ?.filter(
                       (e: IngredientType) =>
-                        activeIngredients.indexOf(e.id) !== -1
+                        activeIngredients.indexOf(e) !== -1
                     )
                     ?.map((e: IngredientType) => e.price)
                     ?.reduce((a: number, b: number) => a + b)

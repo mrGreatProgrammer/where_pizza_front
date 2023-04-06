@@ -39,8 +39,17 @@ export const cartSlice = createSlice({
         if (state.products.find((e) => e.id === action.payload.id)) {
           //@ts-ignore
           state.products = state.products.map((e) => {
-            if (e.id === action.payload.id) {
+            if (e.id === action.payload.id 
+              // && e.addedIngredients?.length
+              ) {
               return { ...e, count: e.count + 1 };
+            // } else if (
+            //   e.id === action.payload.id &&
+            //   // !e.addedIngredients?.length
+            // ) {
+            //   return { ...e, count: e.count + 1
+            //     // , addedIngredients: null 
+            //   };
             } else {
               return e;
             }

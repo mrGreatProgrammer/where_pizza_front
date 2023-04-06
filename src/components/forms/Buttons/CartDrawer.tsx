@@ -22,6 +22,7 @@ const CartDrawer = () => {
                 img={e.img}
                 price={e.price}
                 name={e.name}
+                addedIngredients={e.addedIngredients}
               />
             ))
           ) : (

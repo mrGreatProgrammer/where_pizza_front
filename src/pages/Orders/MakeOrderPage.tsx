@@ -23,6 +23,7 @@ const MakeOrderPage = () => {
                   img={e.img}
                   price={e.price}
                   name={e.name}
+                  addedIngredients={e.addedIngredients}
                 />
               ))
             ) : (

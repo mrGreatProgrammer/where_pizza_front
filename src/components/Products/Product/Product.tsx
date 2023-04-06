@@ -81,19 +81,7 @@ const Product = ({
                 <div className="hidden md:block product__btn-container">
                   <BtnChooseProduct
                     onClick={() => {
-                      let count = 1;
-                      dispatch(
-                        addProductToCartAC({
-                          id,
-                          name,
-                          img,
-                          about,
-                          discount,
-                          price,
-                          count,
-                          ingredients,
-                        })
-                      );
+                      setModalVisibility(true);
                     }}
                     txt="Выбрать"
                   />

@@ -1,4 +1,4 @@
-import { IProduct } from "./products";
+import { IProduct, IngredientType } from "./products";
 
 // export interface ICartItemProps {
 //   id: number | string;
@@ -12,4 +12,5 @@ import { IProduct } from "./products";
 
 export interface IProductCart extends IProduct {
   count: number;
+  addedIngredients: IngredientType[]|[];
 }
