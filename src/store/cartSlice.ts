@@ -36,18 +36,19 @@ export const cartSlice = createSlice({
         console.log("afdfaff\n -------", state.products.length);
         //@ts-ignore
 
-        state.products.find((e) => e.id === action.payload.id)
-          ? //@ts-ignore
-            (state.products = state.products.map((e) => {
-              if (e.id === action.payload.id) {
-                return { ...e, count: e.count + 1 };
-              } else {
-                return e;
-              }
-            }))
-          : //@ts-ignore
-            state.products.push(action.payload);
-
+        if (state.products.find((e) => e.id === action.payload.id)) {
+          //@ts-ignore
+          state.products = state.products.map((e) => {
+            if (e.id === action.payload.id) {
+              return { ...e, count: e.count + 1 };
+            } else {
+              return e;
+            }
+          });
+        } else {
+          //@ts-ignore
+          state.products.push(action.payload);
+        }
         //@ts-ignore
         state.totalCountProducts = state.products.reduce((a, b) => {
           return a + b.count;
@@ -65,6 +66,16 @@ export const cartSlice = createSlice({
         );
         //@ts-ignore
         state.products.push(action.payload);
+        state.totalCountProducts = action.payload.count;
+        state.totalPrice = action.payload.price;
+        // //@ts-ignore
+        // state.totalCountProducts = state.products.reduce((a, b) => {
+        //   return a + b.count;
+        // }, 0);
+        // //@ts-ignore
+        // state.totalPrice = state.products.reduce((a, b) => {
+        //   return a + b.price * b.count;
+        // }, 0);
       }
       message["open"]({
         type: "success",

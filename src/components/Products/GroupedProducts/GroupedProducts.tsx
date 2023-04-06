@@ -12,14 +12,14 @@ const GroupedProducts = ({
   products,
 }: IProductsGroupProps) => {
   return (
-    <section className="mb-10">
+    <section className="my-14">
       <div className="container">
         <div className="flex flex-row items-center justify-between">
           <div>
             <h3 className="font-semibold text-2xl md:text-4xl">{title}</h3>
           </div>
           <div>
-            <FilterBtn />
+            {/* <FilterBtn /> */}
           </div>
         </div>
         <div className="mt-8 grid md:grid-cols-4 md:gap-x-[30px] gap-y-3 md:gap-y-7 products__container">

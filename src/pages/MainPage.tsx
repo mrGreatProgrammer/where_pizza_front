@@ -23,7 +23,7 @@ const MainPage = () => {
     <div>
       <Categories />
       <Combos />
-      <CheckDeliveryAddress />
+      {/* <CheckDeliveryAddress /> */}
 
       {data?.length ? (
         data?.map((e: any) =>
