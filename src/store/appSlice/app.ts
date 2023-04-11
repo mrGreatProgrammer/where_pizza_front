@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { getRestaurants } from "../../http/app";
 // import { RootState } from "../store";
 // import type { RootState } from "../../app/store";
 
@@ -9,6 +10,10 @@ interface AppState {
   burgerOpened: boolean;
   authorized: boolean;
   userInfo: any;
+
+  fetchingRestaurants: boolean;
+  restaurants: any;
+  errFetchRestaurants: string;
 }
 
 // Define the initial state using that type
@@ -16,7 +21,10 @@ const initialState: AppState = {
   value: 0,
   burgerOpened: false,
   authorized: false,
-  userInfo: null
+  userInfo: null,
+  fetchingRestaurants: false,
+  errFetchRestaurants: "",
+  restaurants: null,
 };
 
 export const appSlice = createSlice({
@@ -24,9 +32,26 @@ export const appSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    toggleBurgerMenuAC(state, action:PayloadAction<boolean>){
-      state.burgerOpened=action.payload;
-    }
+    toggleBurgerMenuAC(state, action: PayloadAction<boolean>) {
+      state.burgerOpened = action.payload;
+    },
+  },
+  extraReducers(builder) {
+    builder.addCase(getRestaurants.pending, (state) => {
+      state.fetchingRestaurants = true;
+      state.errFetchRestaurants = "";
+      state.restaurants = null;
+    });
+    builder.addCase(getRestaurants.rejected, (state, action: PayloadAction<any>) => {
+      state.fetchingRestaurants = false;
+      state.errFetchRestaurants = action.payload;
+      state.restaurants = null;
+    });
+    builder.addCase(getRestaurants.fulfilled, (state, action) => {
+      state.fetchingRestaurants = false;
+      state.errFetchRestaurants = "";
+      state.restaurants = action.payload;
+    });
   },
 });
 
