@@ -12,5 +12,7 @@ import { IProduct, IngredientType } from "./products";
 
 export interface IProductCart extends IProduct {
   count: number;
-  addedIngredients: IngredientType[]|[];
+  pizzaSize: string | number;
+  pizzaType: string | number;
+  addedIngredients: IngredientType[] | [];
 }

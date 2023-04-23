@@ -10,7 +10,7 @@ const CombosCards = ({ title, img, bgColor }: any) => {
         className="comobos-img__container w-full h-[220px] mb-5 md:mb-0 md:h-[267px]"
         style={{ backgroundImage: `url(${img})` }}
       ></div>
-      <div className="combos-txt__container w-full text-xl pl-5 pb-5 pr-5 5">
+      <div className="combos-txt__container w-full text-base lg:text-lg xl:text-xl pl-5 pb-5 pr-5 5">
         {title}
       </div>
     </div>

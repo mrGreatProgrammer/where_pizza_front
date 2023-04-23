@@ -23,6 +23,8 @@ const CartDrawer = () => {
                 price={e.price}
                 name={e.name}
                 addedIngredients={e.addedIngredients}
+                pizzaSize={e.pizzaSize}
+                pizzaType={e.pizzaType}
               />
             ))
           ) : (

@@ -33,29 +33,34 @@ export const cartSlice = createSlice({
   reducers: {
     addProductToCartAC(state, action: PayloadAction<IProductCart>) {
       if (state.products.length > 0) {
-        console.log("afdfaff\n -------", state.products.length);
         //@ts-ignore
-
-        if (state.products.find((e) => e.id === action.payload.id)) {
+        if (
+          state.products.find(
+            (e) => e.id === action.payload.id
+            // &&
+            // (e.pizzaSize == action.payload.pizzaSize &&
+            //   e.pizzaType == action.payload.pizzaType)
+          )
+        ) {
           //@ts-ignore
           state.products = state.products.map((e) => {
-            if (e.id === action.payload.id 
-              // && e.addedIngredients?.length
-              ) {
+            if (e.id === action.payload.id) {
               return { ...e, count: e.count + 1 };
-            // } else if (
-            //   e.id === action.payload.id &&
-            //   // !e.addedIngredients?.length
-            // ) {
-            //   return { ...e, count: e.count + 1
-            //     // , addedIngredients: null 
-            //   };
+              // } else if (
+              //   e.id === action.payload.id &&
+              //   (e.pizzaSize != action.payload.pizzaSize ||
+              //     e.pizzaType != action.payload.pizzaType)
+              // ) {
+              //   console.log("!!!!!!!!!!!!");
+              //   //@ts-ignore
+              //   state.products.push(action.payload);
+              //   // return {...action.payload};
             } else {
               return e;
             }
           });
         } else {
-          //@ts-ignore
+          // @ts-ignore
           state.products.push(action.payload);
         }
         //@ts-ignore

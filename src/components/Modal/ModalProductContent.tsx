@@ -35,6 +35,8 @@ const ModalProductContent = ({
     []
   );
 
+  console.log(activeIngredients)
+
   return (
     <div>
       <div className="bg-white modal__content-container max-w-[1070px] rounded-3xl">
@@ -127,6 +129,8 @@ const ModalProductContent = ({
                 count,
                 ingredients: product.ingredients,
                 addedIngredients: activeIngredients,
+                pizzaSize: pizzaSize,
+                pizzaType: dough,
                 // ingredients: product.ingredients?.concat(activeIngredients),
                 price: pizzaSize === "33 см"
                 ? Math.ceil(product?.price * 2.14) +

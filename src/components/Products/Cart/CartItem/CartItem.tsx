@@ -11,7 +11,9 @@ const CartItem: React.FC<IProductCart> = ({
   img,
   price,
   name,
-  addedIngredients
+  addedIngredients,
+  pizzaSize,
+  pizzaType
 }: IProductCart): JSX.Element => {
 
   return (
@@ -30,7 +32,7 @@ const CartItem: React.FC<IProductCart> = ({
             <h3 className="cart_item-title font-semibold text-sm">{name}</h3>
           </div>
           <div className="my-1">
-            <p className="cart_item-desc text-xs font-medium">{"Традиционное тесто, 23 см"}</p>
+            <p className="cart_item-desc text-xs font-medium">{pizzaType} {pizzaSize}</p>
           </div>
           <div className="my-1">
             <p className="text-[10px]" >{addedIngredients?.map(e=>e.name)?.join(', ')}</p>

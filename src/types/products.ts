@@ -7,6 +7,7 @@ type productImage = {
 export interface IngredientType {
   createdAt?: any;
   id: number;
+  img?: string;
   name: string;
   price: number;
   updatedAt?: any;

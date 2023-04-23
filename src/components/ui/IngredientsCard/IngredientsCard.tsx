@@ -29,7 +29,17 @@ const IngredientsCard = ({
       }`}
     >
       <div className="ingredientsCard__img_container">
-        <img className="w-20" src={ingredientImg} alt={ingredient.name} />
+        <img
+          className="w-20"
+          src={
+            ingredient?.img
+              ? `${process.env.REACT_APP_API_URL}${
+                  JSON.parse(ingredient?.img)[0]
+                }`
+              : ingredientImg
+          }
+          alt={`where_pizza${ingredient.name}`}
+        />
         {/* <Image loading="lazy" alt={ingredient.name} src={ingredientImg} /> */}
       </div>
       <div className="ingredientsCard__title_container text-xs my-1.5">
