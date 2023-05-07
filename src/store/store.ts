@@ -22,6 +22,8 @@ import storage from "redux-persist/lib/storage";
 import { productsApi } from "../http/services/products";
 import cartSlice from "./cartSlice";
 import { ordersApi } from "../http/services/ordersApi";
+// import { refreshAccessToken } from "../http";
+
 
 const rootReducer = combineReducers({
   appSlice,
@@ -60,7 +62,9 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(productsApi.middleware, ordersApi.middleware),
+    })
+    // .concat(serve),
+    .concat(productsApi.middleware, ordersApi.middleware),
 });
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors

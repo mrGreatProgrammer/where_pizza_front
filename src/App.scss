@@ -43,21 +43,28 @@
 }
 
 .submit_btn {
-  transition: background .2s ease;
+  transition: background 0.2s ease;
   &:active {
-    background: #FF4003;
+    background: #ff4003;
   }
 }
 
-.message__added_to_cart{
-  
+.message__added_to_cart {
 }
 
-.incdecBtn{
-  &:active{
-    box-shadow: inset #FF400388 0px 1px 3px;
+.incdecBtn {
+  &:active {
+    box-shadow: inset #ff400388 0px 1px 3px;
   }
-  &:disabled{
+  &:disabled {
     background: #e3e3e3;
   }
+}
+
+.truncate_multi_line-txt {
+  display: -webkit-box;
+  display: -moz-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }

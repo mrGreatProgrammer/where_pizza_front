@@ -25,7 +25,7 @@ const IngredientsCardsHolder = ({
   data,
 }: IngredientsCardsHolderProps) => {
   return (
-    <div className="IngredientsCardsHolder flex flex-wrap flex-row gap-3 max-h-56 overflow-y-auto">
+    <div className="IngredientsCardsHolder flex flex-wrap flex-row gap-3 max-h-56 w-96 overflow-y-auto">
       {!isLoading
         ? //@ts-ignore
           data?.map((e: IngredientType) => (

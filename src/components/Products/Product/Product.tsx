@@ -70,7 +70,9 @@ const Product = ({
                   </h6>
                 </div>
                 <div className="product__reciepe-container mt-3 text-xs md:text-base w-44 md:max-w-[260px] h-full flex items-center">
-                  <p className="truncate">{about}</p>
+                  {/* <p className="truncate">{about}</p> */}
+                  {/* <p className="truncate">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis doloribus ratione, sint nisi amet explicabo nobis. Eius aspernatur alias iure. Sequi itaque molestias blanditiis, sed in tenetur saepe delectus quas.</p> */}
+                  <p className="truncate_multi_line-txt">{about}</p>
                 </div>
               </div>
             ) : (

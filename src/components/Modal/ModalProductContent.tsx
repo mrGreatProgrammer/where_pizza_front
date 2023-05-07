@@ -71,7 +71,7 @@ const ModalProductContent = ({
                   {/* <InfoIcon /> */}
                 </div>
               </div>
-              <div>
+              <div className="w-96" >
                 <p className="text-sm">{product.about}</p>
               </div>
               <div>
